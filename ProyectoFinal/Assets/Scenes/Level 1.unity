@@ -339,6 +339,11 @@ Prefab:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 50911195784920912, guid: 323e719e786a48548aac94597094da0e,
+        type: 2}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 323e719e786a48548aac94597094da0e, type: 2}
   m_IsPrefabAsset: 0
@@ -1053,7 +1058,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1071,7 +1076,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealth: 5
-  speed: {x: 5, y: 0}
+  speed: 10
 --- !u!1 &2009640634
 GameObject:
   m_ObjectHideFlags: 0
