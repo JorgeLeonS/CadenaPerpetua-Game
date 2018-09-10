@@ -29,13 +29,13 @@ public class Player : MonoBehaviour {
         transform.Translate(0, inputY, 0);
         transform.Translate(inputX, 0, 0);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        /*if (Input.GetKeyDown(KeyCode.Space))
         {
             rigidbodyComponent.AddForce(forceSpeed);
-        }
+        }*/
         
 
-       bool shoot = Input.GetKeyDown(KeyCode.Space);
+       bool shoot = Input.GetKeyDown(KeyCode.LeftShift);
   
         if (shoot)
         {

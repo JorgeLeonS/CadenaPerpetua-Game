@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealth: 5
+  playerShield: 0
   speed: 10
 --- !u!114 &114728876493631908
 MonoBehaviour:
