@@ -2,19 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour {
+public class ShootingEnemy : MonoBehaviour {
     public int enemyHealth = 1;
     public Vector2 speed = new Vector2(-1, 0);
     private Vector2 movement;
     private Rigidbody2D rigidbodyComponent;
 
+    public GameObject EnemyBullet;
+    public GameObject ZombieCenter;
 
     // Use this for initialization
-    void Start () { 
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    void Start()
+    {
+        InvokeRepeating("EnShoot", 0, 2f);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         movement = new Vector2(speed.x, 0);
     }
 
@@ -44,4 +49,8 @@ public class Enemy : MonoBehaviour {
         }
     }
 
+    void EnShoot()
+    {
+        Instantiate(EnemyBullet, ZombieCenter.transform.position, Quaternion.identity);
+    }
 }

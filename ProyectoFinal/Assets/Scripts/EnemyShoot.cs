@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyShoot : MonoBehaviour {
+    
     public int damage = 1;
     public bool enemyShot = true;
 
-    public Vector2 speed = new Vector2(-5, 0);
+    
+    public Vector2 speed = new Vector2(-1, 0);
     private Vector2 movement;
     private Rigidbody2D rigidbodyComponent;
-
+    /*
     // Use this for initialization
     void Start()
     {
@@ -21,6 +23,7 @@ public class EnemyShoot : MonoBehaviour {
     {
         movement = new Vector2(speed.x, 0);
     }
+    
 
     void FixedUpdate()
     {
@@ -29,4 +32,12 @@ public class EnemyShoot : MonoBehaviour {
 
         rigidbodyComponent.velocity = movement;
     }
+    */
+
+    void Update()
+    {
+        gameObject.transform.Translate(new Vector3(-0.1f, 0, 0));
+    }
+
+
 }

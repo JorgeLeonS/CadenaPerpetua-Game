@@ -50,4 +50,13 @@ public class Weapons : MonoBehaviour {
             return shootCooldown <= 0;
         }
     }
+
+    public void OnTriggerEnter2D(Collider2D otherCollider)
+    {
+        Player playerPickUp = otherCollider.gameObject.GetComponent<Player>();
+        if (playerPickUp != null)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

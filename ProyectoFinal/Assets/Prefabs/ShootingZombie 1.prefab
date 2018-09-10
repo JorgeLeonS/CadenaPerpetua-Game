@@ -9,47 +9,76 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1171141942974494}
+  m_RootGameObject: {fileID: 1821239569468696}
   m_IsPrefabAsset: 1
---- !u!1 &1171141942974494
+--- !u!1 &1008813566353312
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4988851021891170}
-  - component: {fileID: 212904681578773292}
-  - component: {fileID: 61062206104459362}
-  - component: {fileID: 50911195784920912}
-  - component: {fileID: 114386289441305274}
+  - component: {fileID: 4594747941509802}
   m_Layer: 0
-  m_Name: Zombie
+  m_Name: ZombieCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4988851021891170
+--- !u!1 &1821239569468696
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4907726472710588}
+  - component: {fileID: 212698627433291230}
+  - component: {fileID: 61888713753903724}
+  - component: {fileID: 50730002380160974}
+  - component: {fileID: 114885612226936842}
+  m_Layer: 0
+  m_Name: ShootingZombie 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4594747941509802
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1171141942974494}
+  m_GameObject: {fileID: 1008813566353312}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.6, y: -1.593, z: 0}
-  m_LocalScale: {x: 0.10785, y: 0.11625, z: 1}
+  m_LocalPosition: {x: -2.73, y: 2.83, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
+  m_Father: {fileID: 4907726472710588}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4907726472710588
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1821239569468696}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.48, y: -1.64, z: 0}
+  m_LocalScale: {x: 0.10785, y: 0.11625, z: 1}
+  m_Children:
+  - {fileID: 4594747941509802}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50911195784920912
+--- !u!50 &50730002380160974
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1171141942974494}
+  m_GameObject: {fileID: 1821239569468696}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -63,16 +92,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &61062206104459362
+--- !u!61 &61888713753903724
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1171141942974494}
+  m_GameObject: {fileID: 1821239569468696}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -88,25 +117,28 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 12.717102, y: 17.93}
   m_EdgeRadius: 0
---- !u!114 &114386289441305274
+--- !u!114 &114885612226936842
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1171141942974494}
+  m_GameObject: {fileID: 1821239569468696}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f4328407b9d5a64cbe51fd319214107, type: 3}
+  m_Script: {fileID: 11500000, guid: 91f9b416250e1bd4ca0bbe532226401b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHealth: 1
   speed: {x: -1, y: 0}
---- !u!212 &212904681578773292
+  EnemyBullet: {fileID: 1137772305333560, guid: 09b2fb0494d374a40b0f3332ccc043d3,
+    type: 2}
+  ZombieCenter: {fileID: 1008813566353312}
+--- !u!212 &212698627433291230
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1171141942974494}
+  m_GameObject: {fileID: 1821239569468696}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0

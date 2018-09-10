@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: f6a78feae88295041a421059c629c644
+guid: b0b179edf904b2b4bb7a987692177e70
 TextureImporter:
   fileIDToRecycleName:
-    21300000: protagonista_0
+    21300000: MedicalBackpack_0
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -47,7 +47,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 862, y: 384, z: 850, w: 273}
+  spriteBorder: {x: 114, y: 56, z: 114, w: 55}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -107,13 +107,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: protagonista_0
+      name: MedicalBackpack_0
       rect:
         serializedVersion: 2
-        x: 879
-        y: 392
-        width: 192
-        height: 412
+        x: 114
+        y: 56
+        width: 22
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,7 +121,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca9252bc6ace55b479a12fc7cf7a4eb6
+      spriteID: 87e988fa3f2c4ab43bffa8ca3c63479b
       vertices: []
       indices: 
       edges: []
@@ -129,7 +129,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: adc30f08322543140b0ecfa08a63e9ce
+    spriteID: 0f0c8166a4da84742a88c82257ca13a4
     vertices: []
     indices: 
     edges: []
