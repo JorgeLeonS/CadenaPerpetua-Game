@@ -6,15 +6,24 @@ public class Player : MonoBehaviour {
     public int playerHealth = 5;
     public int playerShield = 0;
     public int speed = 10;
-    Vector2 forceSpeed = new Vector2(0, 5);
+    //Vector2 forceSpeed = new Vector2(0, 5);
     private Rigidbody2D rigidbodyComponent;
-    
+
+    public bool hasWeapon = false;
+
+    public float fireRate = 0.25f;
+    private double shootCooldown;
+
+    public GameObject PlayerBullet;
+    public GameObject PlayerCenter;
 
 
     // Use this for initialization
     void Start () {
         if (rigidbodyComponent == null)
             rigidbodyComponent = GetComponent<Rigidbody2D>();
+
+        shootCooldown = 0;
     }
 	
 	// Update is called once per frame
@@ -29,21 +38,33 @@ public class Player : MonoBehaviour {
         transform.Translate(0, inputY, 0);
         transform.Translate(inputX, 0, 0);
 
+        if (shootCooldown > 0)
+        {
+            shootCooldown -= Time.deltaTime;
+        }
+
         /*if (Input.GetKeyDown(KeyCode.Space))
         {
             rigidbodyComponent.AddForce(forceSpeed);
         }*/
-        
 
-       bool shoot = Input.GetKeyDown(KeyCode.LeftShift);
+
+        bool shoot = Input.GetKeyDown(KeyCode.LeftShift);
   
-        if (shoot)
+        if (shoot & CanAttack==true)
         {
-            Weapons weapon = GetComponentInChildren<Weapons>();
+            if (hasWeapon == true)
+            {
+                shootCooldown = fireRate;
+                Instantiate(PlayerBullet, PlayerCenter.transform.position, Quaternion.identity);
+            }
+            
+
+           /* Weapons weapon = GetComponentInChildren<Weapons>();
             if (weapon != null)
             {
                 weapon.Attack(false);
-            }
+            }*/
 
         }
     }
@@ -77,13 +98,27 @@ public class Player : MonoBehaviour {
     }
 
 
-    private void OnTriggerEnter2D(Collider2D otherCollider)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        EnemyShoot enemyShot = otherCollider.gameObject.GetComponent<EnemyShoot>();
+        EnemyShoot enemyShot = collision.gameObject.GetComponent<EnemyShoot>();
         if (enemyShot != null)
         {
             ChangePlayerLife(enemyShot.damage);
             Destroy(enemyShot.gameObject);
+        }
+
+        Weapons weapon = collision.gameObject.GetComponent<Weapons>();
+        if (weapon != null)
+        {
+            hasWeapon = true;
+        }
+    }
+
+    public bool CanAttack
+    {
+        get
+        {
+            return shootCooldown <= 0;
         }
     }
 

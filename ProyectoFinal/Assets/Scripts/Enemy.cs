@@ -8,14 +8,24 @@ public class Enemy : MonoBehaviour {
     private Vector2 movement;
     private Rigidbody2D rigidbodyComponent;
 
+    public bool canShoot = false;
+    public GameObject EnemyBullet;
+    public GameObject EnemyCenter;
+
 
     // Use this for initialization
-    void Start () { 
-	}
+    void Start () {
+        if (canShoot==true)
+        {
+            InvokeRepeating("EnemyShotAttack", 0, 2f);
+        }
+        
+    }
 	
 	// Update is called once per frame
 	void Update () {
         movement = new Vector2(speed.x, 0);
+
     }
 
     void FixedUpdate()
@@ -34,14 +44,38 @@ public class Enemy : MonoBehaviour {
             Destroy(gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D otherCollider)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        PlayerShoot playerShot = otherCollider.gameObject.GetComponent<PlayerShoot>();
+        PlayerShoot playerShot = collision.gameObject.GetComponent<PlayerShoot>();
         if (playerShot != null)
         {
             ChangeEnemyLife(playerShot.damage);
             Destroy(playerShot.gameObject);
         }
+
+        Player player = collision.gameObject.GetComponent<Player>();
+        if (player != null)
+        {
+            //canShoot = true;
+            InvokeRepeating("EnemyShotAttack", 0, 2f);
+        }
+    }
+
+
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Player player = collision.gameObject.GetComponent<Player>();
+        if (player != null)
+        {
+            //canShoot = true;
+            CancelInvoke();
+        }
+    }
+
+    void EnemyShotAttack()
+    {
+        Instantiate(EnemyBullet, EnemyCenter.transform.position, Quaternion.identity);
     }
 
 }

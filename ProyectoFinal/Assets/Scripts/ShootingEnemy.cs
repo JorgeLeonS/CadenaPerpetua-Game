@@ -9,7 +9,7 @@ public class ShootingEnemy : MonoBehaviour {
     private Rigidbody2D rigidbodyComponent;
 
     public GameObject EnemyBullet;
-    public GameObject ZombieCenter;
+    public GameObject EnemyCenter;
 
     // Use this for initialization
     void Start()
@@ -51,6 +51,6 @@ public class ShootingEnemy : MonoBehaviour {
 
     void EnShoot()
     {
-        Instantiate(EnemyBullet, ZombieCenter.transform.position, Quaternion.identity);
+        Instantiate(EnemyBullet, EnemyCenter.transform.position, Quaternion.identity);
     }
 }

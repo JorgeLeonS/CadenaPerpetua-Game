@@ -11,13 +11,14 @@ public class EnemyShoot : MonoBehaviour {
     public Vector2 speed = new Vector2(-1, 0);
     private Vector2 movement;
     private Rigidbody2D rigidbodyComponent;
-    /*
+    
     // Use this for initialization
     void Start()
     {
-        Destroy(gameObject, 10);
+        Destroy(gameObject, 2);
     }
 
+        /*
     // Update is called once per frame
     void Update()
     {
