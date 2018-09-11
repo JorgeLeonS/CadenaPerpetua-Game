@@ -78,9 +78,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e592c4fc784425d4f8a82da0014be219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 4147836199887460, guid: ea51d34cdc0722e4a88c654e4a1144e5,
-    type: 2}
-  fireRate: 0.25
 --- !u!212 &212820687430910076
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -113,8 +110,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1308531103
+  m_SortingLayer: -4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8f565219f3f72fd4399de0ea784bd9c6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

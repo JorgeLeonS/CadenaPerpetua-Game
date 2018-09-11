@@ -44,6 +44,9 @@ TagManager:
   - name: Platforms
     uniqueID: 3963959711
     locked: 0
+  - name: Items
+    uniqueID: 2986436193
+    locked: 0
   - name: Bullet
     uniqueID: 1678428853
     locked: 0
