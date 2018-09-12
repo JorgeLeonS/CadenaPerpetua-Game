@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: b0b179edf904b2b4bb7a987692177e70
+guid: 7ec6ccf3bc35d964592ca6c21911cdb8
 TextureImporter:
   fileIDToRecycleName:
-    21300000: MedicalBackpack_0
+    21300000: escudo_0
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -47,7 +47,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 114, y: 56, z: 114, w: 55}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -81,39 +81,17 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MedicalBackpack_0
+      name: escudo_0
       rect:
         serializedVersion: 2
-        x: 114
-        y: 56
-        width: 22
-        height: 29
+        x: 816
+        y: 440
+        width: 241
+        height: 418
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,7 +99,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87e988fa3f2c4ab43bffa8ca3c63479b
+      spriteID: fb75e4c69b0e25e43b1ce85633e1ad43
       vertices: []
       indices: 
       edges: []
@@ -129,7 +107,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 0f0c8166a4da84742a88c82257ca13a4
+    spriteID: e022baea30d6a2b44bf97dd086d14742
     vertices: []
     indices: 
     edges: []
