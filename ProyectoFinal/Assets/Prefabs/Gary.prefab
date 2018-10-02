@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4275146770332086}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: GaryShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 61575344633333374}
   - component: {fileID: 50153702837788716}
   - component: {fileID: 114082580844271872}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Gary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,6 +131,7 @@ MonoBehaviour:
   playerHealth: 15
   playerShield: 0
   speed: 5
+  hasWeapon: 0
   fireRate: 0.3
   PlayerBullet: {fileID: 1515568446754882, guid: ea51d34cdc0722e4a88c654e4a1144e5,
     type: 2}
