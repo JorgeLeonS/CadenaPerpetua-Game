@@ -11,29 +11,32 @@ public class Enemy : MonoBehaviour {
     public bool canShoot = false;
     public GameObject EnemyBullet;
     public GameObject EnemyCenter;
-
+    GameObject player;
 
     // Use this for initialization
     void Start () {
+        player = GameObject.FindGameObjectWithTag("Player");
+
+        if (rigidbodyComponent == null)
+            rigidbodyComponent = GetComponent<Rigidbody2D>();
+
         if (canShoot==true)
         {
             InvokeRepeating("EnemyShotAttack", 0, 2f);
         }
         
     }
-	
-	// Update is called once per frame
-	void Update () {
-        movement = new Vector2(speed.x, 0);
 
+    // Update is called once per frame
+    void Update()
+    {
+        rigidbodyComponent.velocity = new Vector2(speed.x, 0);
+        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
     }
 
     void FixedUpdate()
     {
-        if (rigidbodyComponent == null)
-            rigidbodyComponent = GetComponent<Rigidbody2D>();
-
-        rigidbodyComponent.velocity = movement;
+        
     }
 
     public void ChangeEnemyLife(int damage)

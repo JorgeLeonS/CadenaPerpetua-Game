@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 61575344633333374}
   - component: {fileID: 50153702837788716}
   - component: {fileID: 114082580844271872}
+  - component: {fileID: 114049828085190360}
   m_Layer: 12
   m_Name: Gary
   m_TagString: Untagged
@@ -117,6 +118,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.1204185, y: 3.8287587}
   m_EdgeRadius: 0
+--- !u!114 &114049828085190360
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1483907012053876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24befcf6e36c08d44997ac688babc3d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114082580844271872
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -130,7 +142,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealth: 15
   playerShield: 0
-  speed: 5
+  speedX: 6
+  speedY: 4
   hasWeapon: 0
   fireRate: 0.3
   PlayerBullet: {fileID: 1515568446754882, guid: ea51d34cdc0722e4a88c654e4a1144e5,
@@ -168,8 +181,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 2123442685
-  m_SortingLayer: -1
+  m_SortingLayerID: 1278418559
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f6a78feae88295041a421059c629c644, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
+
+    //2.197    -3.5
     public int playerHealth = 5;
     public int playerShield = 0;
-    public int speed = 10;
-    //Vector2 forceSpeed = new Vector2(0, 5);
+    public int speedX = 6;
+    public int speedY = 4;
+    Vector2 limiteY = new Vector2(-3.5f, 2.197f);
+
     private Rigidbody2D rigidbodyComponent;
+    SpriteRenderer spriteComponent;
+    SpriteRenderer spriteComponentPoint;
 
     public bool hasWeapon = false;
-
     public float fireRate = 0.25f;
     private double shootCooldown;
 
@@ -20,6 +25,9 @@ public class Player : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        spriteComponent = GetComponent<SpriteRenderer>();
+
+
         if (rigidbodyComponent == null)
             rigidbodyComponent = GetComponent<Rigidbody2D>();
 
@@ -29,14 +37,17 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
          
-        float inputX = Input.GetAxis("Horizontal") * speed;
-        float inputY = Input.GetAxis("Vertical") * speed;
-        inputX *= Time.deltaTime;
-        inputY *= Time.deltaTime;
+        float inputX = Input.GetAxis("Horizontal") * speedX;
+        float inputY = Input.GetAxis("Vertical") * speedY;
+        
+        if (inputX != 0)
+        {
+            spriteComponent.flipX = inputX < 0;
+        }
 
-
-        transform.Translate(0, inputY, 0);
-        transform.Translate(inputX, 0, 0);
+        rigidbodyComponent.velocity = new Vector2(inputX, inputY);
+        transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, limiteY.x, limiteY.y), transform.position.z);
+        
 
         if (shootCooldown > 0)
         {
@@ -53,6 +64,7 @@ public class Player : MonoBehaviour {
   
         if (shoot & CanAttack==true)
         {
+            
             if (hasWeapon == true)
             {
                 shootCooldown = fireRate;
