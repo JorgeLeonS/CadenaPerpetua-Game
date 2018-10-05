@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 50902962171741452}
   - component: {fileID: 114200881593704276}
   - component: {fileID: 114317804404900626}
-  m_Layer: 11
+  m_Layer: 21
   m_Name: ShootingEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}

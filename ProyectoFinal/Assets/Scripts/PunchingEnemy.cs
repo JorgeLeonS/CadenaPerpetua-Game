@@ -13,7 +13,8 @@ public class PunchingEnemy : MonoBehaviour
     private SpriteRenderer enemyRen;
 
 
-
+    public Transform LeftPunch;
+    public Transform RightPunch;
     Transform player;
     Vector3 target;
 
@@ -54,9 +55,7 @@ public class PunchingEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Player player = gameObject.GetComponent<Player>();
-        if (player != null)
-        {
+
             target = player.transform.position;
             movement = target - transform.position;
 
@@ -78,11 +77,11 @@ public class PunchingEnemy : MonoBehaviour
                 enemyRen.flipX = movement.x > 0;
             }
 
-            if (movement.magnitude < 0.3f)
-                movement = Vector2.zero;
-            movement.Normalize();
-            rigidbodyComponent.velocity = new Vector2(movement.x * speedX, movement.y * speedY);
-        }
+        if (movement.magnitude < 0.7f)
+            movement = Vector2.zero;
+        movement.Normalize();
+        rigidbodyComponent.velocity = new Vector2(movement.x * speedX, movement.y * speedY);
+
     }
 }
         

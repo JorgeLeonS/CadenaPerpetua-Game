@@ -24,7 +24,6 @@ public class EnemyFOV : MonoBehaviour {
     void Start()
     {
         enemyRen = GetComponent<SpriteRenderer>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
 
         if (rigidbodyComponent == null)
             rigidbodyComponent = GetComponent<Rigidbody2D>();
@@ -97,7 +96,7 @@ public class EnemyFOV : MonoBehaviour {
                 enemyRen.flipX = movement.x > 0;
             }
             
-            if (movement.magnitude < 0.3f)
+            if (movement.magnitude < 0.7f)
                 movement = Vector2.zero;
             movement.Normalize();
             rigidbodyComponent.velocity = new Vector2(movement.x * speedX, movement.y * speedY);

@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 50153702837788716}
   - component: {fileID: 114082580844271872}
   - component: {fileID: 114049828085190360}
-  m_Layer: 12
+  m_Layer: 25
   m_Name: Gary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
