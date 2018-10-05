@@ -105,7 +105,7 @@ public class EnemyFOV : MonoBehaviour {
         }
     }
 
-
+    //Deja de seguir al enemigo en cuanto sale del FOV
     private void OnTriggerExit2D(Collider2D collision)
     {
         Player player = collision.gameObject.GetComponent<Player>();
