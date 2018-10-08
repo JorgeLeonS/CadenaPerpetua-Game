@@ -27,11 +27,7 @@ public class PunchingEnemy : MonoBehaviour
 
         if (rigidbodyComponent == null)
             rigidbodyComponent = GetComponent<Rigidbody2D>();
-
-
-
-
-
+        
     }
 
     public void ChangeEnemyLife(int damage)
