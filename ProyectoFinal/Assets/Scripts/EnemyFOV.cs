@@ -12,6 +12,10 @@ public class EnemyFOV : MonoBehaviour {
     private Rigidbody2D rigidbodyComponent;
     private SpriteRenderer enemyRen;
 
+    private bool dirRight = true;
+    public float patrollingSpeed = 2.0f;
+    public float enemyPosx;
+
     public bool canShoot = false;
     public GameObject EnemyBullet;
     public GameObject EnemyCenter;
@@ -34,14 +38,49 @@ public class EnemyFOV : MonoBehaviour {
             InvokeRepeating("EnemyShotAttack", 0, 2f);
         }
 
+        enemyPosx = transform.position.x;
+
 
     }
 
     // Update is called once per frame
     void Update()
     {
+
         //rigidbodyComponent.velocity = new Vector2(speedX, speedY);
         //transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+
+        if (dirRight)
+            transform.Translate(Vector2.right * patrollingSpeed * Time.deltaTime);
+        else
+            transform.Translate(-Vector2.right * patrollingSpeed * Time.deltaTime);
+
+        if (transform.position.x >= enemyPosx)
+        {
+            dirRight = false;
+            /*
+             * REVISAR CÓDIGO PARA ROTACIÓN
+            var rotation = transform.rotation;
+            rotation.y = 180;
+            transform.rotation = rotation;
+            //EnemyShootingPoint.transform.rotation = rotation;
+            enemyRen.flipX = movement.x < 0;
+            */
+
+        }
+
+        if (transform.position.x <= (enemyPosx - 4))
+        {
+            dirRight = true;
+            /*
+             * REVISAR CÓDIGO PARA ROTACIÓN
+            var rotation = transform.rotation;
+            rotation.y = 0;
+            transform.rotation = rotation;
+            //EnemyShootingPoint.transform.rotation = rotation;
+            enemyRen.flipX = movement.x > 0;
+            */
+        }
     }
 
     
@@ -111,6 +150,7 @@ public class EnemyFOV : MonoBehaviour {
         Player player = collision.gameObject.GetComponent<Player>();
         if (player != null)
         {
+            enemyPosx = transform.position.x;
             target = transform.position;
             rigidbodyComponent.velocity = new Vector2(0, 0);
             CancelInvoke();
