@@ -79,6 +79,10 @@ public class Player : MonoBehaviour {
             }*/
 
         }
+
+        //Punch animation CREATE ANIMATION VARIABLE, IF(!ANIM... ="PUNCHPROT" THEN...
+
+
     }
 
 
