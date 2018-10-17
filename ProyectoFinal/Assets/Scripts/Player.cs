@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour {
+[RequireComponent(typeof(Animator))]
+
+public class Player : MonoBehaviour
+{
 
     //2.197    -3.5
     public int playerHealth = 5;
@@ -22,9 +25,19 @@ public class Player : MonoBehaviour {
     public GameObject PlayerBullet;
     public GameObject PlayerCenter;
 
+    Animator anim;
+    [SerializeField]
+    public Transform rightPunch;
+    [SerializeField]
+    public Transform leftPunch;
+    [SerializeField]
+    public float punchRadius = 0.5f;
+
+
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         spriteComponent = GetComponent<SpriteRenderer>();
 
 
@@ -32,14 +45,17 @@ public class Player : MonoBehaviour {
             rigidbodyComponent = GetComponent<Rigidbody2D>();
 
         shootCooldown = 0;
+
+        anim = GetComponent<Animator>();
     }
-	
-	// Update is called once per frame
-	void Update () {
-         
+
+    // Update is called once per frame
+    void Update()
+    {
+
         float inputX = Input.GetAxis("Horizontal") * speedX;
         float inputY = Input.GetAxis("Vertical") * speedY;
-        
+
         if (inputX != 0)
         {
             spriteComponent.flipX = inputX < 0;
@@ -47,7 +63,7 @@ public class Player : MonoBehaviour {
 
         rigidbodyComponent.velocity = new Vector2(inputX, inputY);
         transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, limiteY.x, limiteY.y), transform.position.z);
-        
+
 
         if (shootCooldown > 0)
         {
@@ -61,30 +77,33 @@ public class Player : MonoBehaviour {
 
 
         bool shoot = Input.GetKeyDown(KeyCode.LeftShift);
-  
-        if (shoot & CanAttack==true)
+
+        if (shoot & CanAttack == true)
         {
-            
+
             if (hasWeapon == true)
             {
                 shootCooldown = fireRate;
                 Instantiate(PlayerBullet, PlayerCenter.transform.position, Quaternion.identity);
             }
-            
 
-           /* Weapons weapon = GetComponentInChildren<Weapons>();
-            if (weapon != null)
-            {
-                weapon.Attack(false);
-            }*/
+
+            /* Weapons weapon = GetComponentInChildren<Weapons>();
+             if (weapon != null)
+             {
+                 weapon.Attack(false);
+             }*/
 
         }
 
-        //Punch animation CREATE ANIMATION VARIABLE, IF(!ANIM... ="PUNCHPROT" THEN...
+        //Punch animation
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            anim.SetTrigger("SendPunch");
+        }
 
-
-    }
-
+        //FALTA CÓDIGO PARA QUE NO EJECUTE OTRA ANIMACIÓN IMENTRAS ESTÉ OTRA 16:00
+    } //Update Ends
 
     void OnGUI()
     {
@@ -94,7 +113,7 @@ public class Player : MonoBehaviour {
 
     void FixedUpdate()
     {
-        
+
     }
 
     public void ChangePlayerLife(int damage)
@@ -149,4 +168,18 @@ public class Player : MonoBehaviour {
         playerShield = playerShield + 10;
     }
 
+
+    //Crea dos círculos para los puños (Especie de collider)
+    private void OnDrawGizmosSelected()
+    {
+        if (leftPunch == null || rightPunch == null)
+        {
+            return;
+        }
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(leftPunch.position, punchRadius);
+        Gizmos.DrawWireSphere(rightPunch.position, punchRadius);
+
+
+    }
 }
