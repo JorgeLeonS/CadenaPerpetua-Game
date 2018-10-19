@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
 
 public class Player : MonoBehaviour
 {
@@ -26,11 +25,8 @@ public class Player : MonoBehaviour
     public GameObject PlayerCenter;
 
     Animator anim;
-    [SerializeField]
     public Transform rightPunch;
-    [SerializeField]
     public Transform leftPunch;
-    [SerializeField]
     public float punchRadius = 0.5f;
 
 
@@ -103,6 +99,9 @@ public class Player : MonoBehaviour
         }
 
         //FALTA CÓDIGO PARA QUE NO EJECUTE OTRA ANIMACIÓN IMENTRAS ESTÉ OTRA 16:00
+
+
+
     } //Update Ends
 
     void OnGUI()
@@ -140,6 +139,8 @@ public class Player : MonoBehaviour
         {
             ChangePlayerLife(enemyShot.damage);
             Destroy(enemyShot.gameObject);
+            anim.SetTrigger("ReceivePunch");
+            
         }
 
         Weapons weapon = collision.gameObject.GetComponent<Weapons>();
