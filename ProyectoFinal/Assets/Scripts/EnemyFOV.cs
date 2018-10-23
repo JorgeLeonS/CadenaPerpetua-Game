@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyFOV : MonoBehaviour {
 
-    public int enemyHealth = 1;
+    public int enemyHealth = 2;
     public float speedX = 2.3f;
     public float speedY = 1.7f;
     Vector2 limiteY = new Vector2(-3.5f, 2.197f);
@@ -13,6 +13,7 @@ public class EnemyFOV : MonoBehaviour {
     private SpriteRenderer enemyRen;
 
     private bool dirRight = true;
+    bool Patrol;
     public float patrollingSpeed = 2.0f;
     public float enemyPosx;
 
@@ -39,8 +40,8 @@ public class EnemyFOV : MonoBehaviour {
         }
 
         enemyPosx = transform.position.x;
-
-
+        dirRight = false;
+        Patrol = true;
     }
 
     // Update is called once per frame
@@ -48,41 +49,49 @@ public class EnemyFOV : MonoBehaviour {
     {
 
         //rigidbodyComponent.velocity = new Vector2(speedX, speedY);
-        //transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-
-        if (dirRight)
-            transform.Translate(Vector2.right * patrollingSpeed * Time.deltaTime);
-        else
-            transform.Translate(-Vector2.right * patrollingSpeed * Time.deltaTime);
-
-        if (transform.position.x >= enemyPosx)
+        //transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, limiteY.x, limiteY.y), transform.position.z);
+        if (Patrol == true)
         {
-            dirRight = false;
-            /*
-             * REVISAR CÓDIGO PARA ROTACIÓN
-            var rotation = transform.rotation;
-            rotation.y = 180;
-            transform.rotation = rotation;
-            //EnemyShootingPoint.transform.rotation = rotation;
-            enemyRen.flipX = movement.x < 0;
-            */
+            if (dirRight)
+            {
+                rigidbodyComponent.velocity = new Vector2(speedX, 0);
+                transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, limiteY.x, limiteY.y), 0);
 
-        }
+            }
+            else
+            {
+                rigidbodyComponent.velocity = new Vector2(-speedX, 0);
+                transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, limiteY.x, limiteY.y), 0);
+            }
 
-        if (transform.position.x <= (enemyPosx - 4))
-        {
-            dirRight = true;
-            /*
-             * REVISAR CÓDIGO PARA ROTACIÓN
-            var rotation = transform.rotation;
-            rotation.y = 0;
-            transform.rotation = rotation;
-            //EnemyShootingPoint.transform.rotation = rotation;
-            enemyRen.flipX = movement.x > 0;
-            */
+            if (transform.position.x >= enemyPosx)
+            {
+                dirRight = false;
+
+                //REVISAR CÓDIGO PARA ROTACIÓN
+                var rotation = transform.rotation;
+                rotation.y = 0;
+                transform.rotation = rotation;
+                EnemyCenter.transform.rotation = rotation;
+
+
+            }
+
+            if (transform.position.x <= (enemyPosx - 4))
+            {
+                dirRight = true;
+
+                //REVISAR CÓDIGO PARA ROTACIÓN
+                var rotation = transform.rotation;
+                rotation.y = 180;
+                transform.rotation = rotation;
+                EnemyCenter.transform.rotation = rotation;
+
+            }
         }
+        
+
     }
-
     
 
     public void ChangeEnemyLife(int damage)
@@ -108,6 +117,13 @@ public class EnemyFOV : MonoBehaviour {
             canShoot = true;
             InvokeRepeating("EnemyShotAttack", 0, 1f);
         }
+
+        PlayerPunch punch = collision.gameObject.GetComponent<PlayerPunch>();
+        if (punch != null)
+        {
+            ChangeEnemyLife(punch.damage);
+            
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -115,6 +131,7 @@ public class EnemyFOV : MonoBehaviour {
         Player player = collision.gameObject.GetComponent<Player>();
         if (player != null)
         {
+            Patrol = false;
             target = player.transform.position;
             movement = target - transform.position;
             
@@ -123,7 +140,7 @@ public class EnemyFOV : MonoBehaviour {
                 var rotation = transform.rotation;
                 rotation.y = 180;
                 transform.rotation = rotation;
-                //EnemyShootingPoint.transform.rotation = rotation;
+                EnemyCenter.transform.rotation = rotation;
                 enemyRen.flipX = movement.x < 0;
 
             }
@@ -132,7 +149,7 @@ public class EnemyFOV : MonoBehaviour {
                 var rotation = transform.rotation;
                 rotation.y = 0;
                 transform.rotation = rotation;
-                //EnemyShootingPoint.transform.rotation = rotation;
+                EnemyCenter.transform.rotation = rotation;
                 enemyRen.flipX = movement.x > 0;
             }
             
@@ -153,12 +170,13 @@ public class EnemyFOV : MonoBehaviour {
             enemyPosx = transform.position.x;
             target = transform.position;
             rigidbodyComponent.velocity = new Vector2(0, 0);
-            CancelInvoke();
+            Patrol = true;
+            CancelInvoke("EnemyShotAttack");
         }
     }
 
     void EnemyShotAttack()
     {
-        Instantiate(EnemyBullet, EnemyCenter.transform.position, Quaternion.identity);
+        Instantiate(EnemyBullet, EnemyCenter.transform.position, EnemyCenter.transform.rotation);
     }
 }

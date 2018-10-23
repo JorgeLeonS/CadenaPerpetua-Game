@@ -16,9 +16,9 @@ TagManager:
   - 
   - 
   - Items
-  - Bullet
   - Punch
-  - 
+  - EnemyBullet
+  - PlayerBullet
   - 
   - 
   - 

@@ -25,9 +25,8 @@ public class Player : MonoBehaviour
     public GameObject PlayerCenter;
 
     Animator anim;
-    public Transform rightPunch;
-    public Transform leftPunch;
-    public float punchRadius = 0.5f;
+    public GameObject rightPunch;
+    public GameObject leftPunch;
 
 
 
@@ -43,6 +42,9 @@ public class Player : MonoBehaviour
         shootCooldown = 0;
 
         anim = GetComponent<Animator>();
+
+        rightPunch.SetActive(false);
+        leftPunch.SetActive(false);
     }
 
     // Update is called once per frame
@@ -54,7 +56,22 @@ public class Player : MonoBehaviour
 
         if (inputX != 0)
         {
-            spriteComponent.flipX = inputX < 0;
+            if (inputX < 0)
+            {
+                spriteComponent.flipX = inputX < 0;
+                var rotation = PlayerCenter.transform.rotation;
+                rotation.y = 180;
+                PlayerCenter.transform.rotation = rotation;
+                
+            }
+            else
+            {
+                spriteComponent.flipX = false;
+                var rotation = PlayerCenter.transform.rotation;
+                rotation.y = 0;
+                PlayerCenter.transform.rotation = rotation;
+            }
+            
         }
 
         rigidbodyComponent.velocity = new Vector2(inputX, inputY);
@@ -66,42 +83,29 @@ public class Player : MonoBehaviour
             shootCooldown -= Time.deltaTime;
         }
 
-        /*if (Input.GetKeyDown(KeyCode.Space))
+        bool attack = Input.GetKeyDown(KeyCode.Space);
+
+        if (attack & CanAttack == true)
         {
-            rigidbodyComponent.AddForce(forceSpeed);
-        }*/
-
-
-        bool shoot = Input.GetKeyDown(KeyCode.LeftShift);
-
-        if (shoot & CanAttack == true)
-        {
-
+            //Si tiene arma, dispara
             if (hasWeapon == true)
             {
                 shootCooldown = fireRate;
-                Instantiate(PlayerBullet, PlayerCenter.transform.position, Quaternion.identity);
+                Instantiate(PlayerBullet, PlayerCenter.transform.position, PlayerCenter.transform.rotation);
+            }
+            else
+            {
+                //Si no tiene arma dara un puñetazo
+                shootCooldown = fireRate;   
+                anim.SetTrigger("SendPunch");
+                StartCoroutine("DoPunch");
+                
             }
 
-
-            /* Weapons weapon = GetComponentInChildren<Weapons>();
-             if (weapon != null)
-             {
-                 weapon.Attack(false);
-             }*/
-
         }
-
-        //Punch animation
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            anim.SetTrigger("SendPunch");
-        }
-
         //FALTA CÓDIGO PARA QUE NO EJECUTE OTRA ANIMACIÓN IMENTRAS ESTÉ OTRA 16:00
 
-
-
+        
     } //Update Ends
 
     void OnGUI()
@@ -158,6 +162,22 @@ public class Player : MonoBehaviour
         }
     }
 
+    IEnumerator DoPunch()
+    {
+        if (spriteComponent.flipX == false)
+        {
+            rightPunch.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            rightPunch.SetActive(false);
+        }
+        else
+        {
+            leftPunch.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            leftPunch.SetActive(false);
+        }
+    }
+
     //Items
     public void MedKitFunction()
     {
@@ -170,17 +190,4 @@ public class Player : MonoBehaviour
     }
 
 
-    //Crea dos círculos para los puños (Especie de collider)
-    private void OnDrawGizmosSelected()
-    {
-        if (leftPunch == null || rightPunch == null)
-        {
-            return;
-        }
-        Gizmos.color = Color.white;
-        Gizmos.DrawWireSphere(leftPunch.position, punchRadius);
-        Gizmos.DrawWireSphere(rightPunch.position, punchRadius);
-
-
-    }
 }
