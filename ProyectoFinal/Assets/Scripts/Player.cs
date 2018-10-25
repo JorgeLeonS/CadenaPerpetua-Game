@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
+    Vector2 cntrl;
     void Update()
     {
 
@@ -77,6 +78,8 @@ public class Player : MonoBehaviour
         rigidbodyComponent.velocity = new Vector2(inputX, inputY);
         transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, limiteY.x, limiteY.y), transform.position.z);
 
+        cntrl = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        anim.SetBool("IsWalking", cntrl.magnitude != 0);
 
         if (shootCooldown > 0)
         {
