@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public int playerShield = 0;
     public int speedX = 6;
     public int speedY = 4;
-    Vector2 limiteY = new Vector2(-3.5f, 2.197f);
+    Vector2 limiteY = new Vector2(-3.5f, 2.94f);
 
     private Rigidbody2D rigidbodyComponent;
     SpriteRenderer spriteComponent;
