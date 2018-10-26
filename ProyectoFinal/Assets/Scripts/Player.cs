@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class Player : MonoBehaviour
@@ -114,7 +115,7 @@ public class Player : MonoBehaviour
             //Si tiene arma, dispara
             if (hasWeapon == true)
             {
-                anim.SetTrigger("ShootMain");
+                //anim.SetTrigger("ShootMain"); AUN NO ESTÁ LA ANIMACIÓN
                 shootCooldown = fireRate;
                 Instantiate(PlayerBullet, PlayerCenter.transform.position, PlayerCenter.transform.rotation);
             }
@@ -221,11 +222,14 @@ public class Player : MonoBehaviour
         }
 
 
+
+
+
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        //COlision con una escalera que permite cambiar de pisos
+        //Colision con una escalera que permite cambiar de pisos
         Escalera escalera = collision.gameObject.GetComponent<Escalera>();
         if (escalera != null)
         {

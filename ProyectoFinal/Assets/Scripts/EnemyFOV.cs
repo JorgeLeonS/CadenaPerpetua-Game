@@ -104,6 +104,7 @@ public class EnemyFOV : MonoBehaviour {
     public void ChangeEnemyLife(int damage)
     {
         enemyHealth = enemyHealth - damage;
+        anim.SetTrigger("ReceiveDamage");
 
         if (enemyHealth == 0)
             Destroy(gameObject);
@@ -116,7 +117,7 @@ public class EnemyFOV : MonoBehaviour {
         {
             ChangeEnemyLife(playerShot.damage);
             Destroy(playerShot.gameObject);
-            anim.SetTrigger("ReceiveDamage");
+
         }
 
         Player player = collision.gameObject.GetComponent<Player>();

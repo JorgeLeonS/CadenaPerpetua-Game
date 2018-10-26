@@ -16,4 +16,5 @@ public class ChangeToMenu : MonoBehaviour {
             SceneManager.LoadScene("MainMenu");
         }
 	}
+
 }
