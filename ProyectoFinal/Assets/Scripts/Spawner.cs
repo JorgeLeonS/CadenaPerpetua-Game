@@ -39,7 +39,7 @@ public class Spawner : MonoBehaviour {
             Destroy(playerShot.gameObject);
         }
 
-        Player player = collision.gameObject.GetComponent<Player>();
+        //Player player = collision.gameObject.GetComponent<Player>();
 
     }
 }

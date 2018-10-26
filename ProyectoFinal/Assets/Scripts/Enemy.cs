@@ -11,11 +11,11 @@ public class Enemy : MonoBehaviour {
     public bool canShoot = false;
     public GameObject EnemyBullet;
     public GameObject EnemyCenter;
-    GameObject player;
+    //GameObject player;
 
     // Use this for initialization
     void Start () {
-        player = GameObject.FindGameObjectWithTag("Player");
+        //player = GameObject.FindGameObjectWithTag("Player");
 
         if (rigidbodyComponent == null)
             rigidbodyComponent = GetComponent<Rigidbody2D>();

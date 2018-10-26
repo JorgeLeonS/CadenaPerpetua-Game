@@ -1,16 +1,8 @@
 fileFormatVersion: 2
-guid: 3f2db89d3273b164c9ca35c658d33caa
+guid: 7f7af15ee95077b469eb7c5992cd5a21
 TextureImporter:
   fileIDToRecycleName:
-    21300000: escalera
-    21300002: escaleraoscura_1
-    21300004: escaleraoscura_2
-    21300006: escaleraoscura_3
-    21300008: escaleraoscura_4
-    21300010: escaleraoscura_5
-    21300012: escaleraoscura_6
-    21300014: escaleraoscura_7
-    21300016: escaleraoscura_8
+    21300000: pistola_0
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -49,17 +41,17 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 1131, y: 38, z: 772, w: 175}
+  spriteBorder: {x: 996, y: 401, z: 798, w: 880}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: -1
+  spriteTessellationDetail: 0
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -115,13 +107,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: escalera
+      name: pistola_0
       rect:
         serializedVersion: 2
-        x: 1128
-        y: 39
-        width: 200
-        height: 1283
+        x: 1000
+        y: 400
+        width: 300
+        height: 221
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -129,95 +121,21 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a5126b4374d6da5409823716c31aa21c
+      spriteID: 23119f08b29c22249b6ad7bd5f950714
       vertices: []
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: escaleraoscura_4
-      rect:
-        serializedVersion: 2
-        x: 1118
-        y: 57
-        width: 4
-        height: 5
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c93a46e25b642bb44a831b6d834a688f
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: escaleraoscura_6
-      rect:
-        serializedVersion: 2
-        x: 1350
-        y: 349
-        width: 9
-        height: 72
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 57a1fb14dd9f867448e04c182dcf7173
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: escaleraoscura_7
-      rect:
-        serializedVersion: 2
-        x: 1351
-        y: 804
-        width: 4
-        height: 94
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c2465d17848ca9346b5e4130ec395ed2
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: escaleraoscura_8
-      rect:
-        serializedVersion: 2
-        x: 2094
-        y: 0
-        width: 6
-        height: 151
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1e62f14da6136a5499195edebae44319
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    outline: []
+    outline:
+    - - {x: -35, y: -347}
+      - {x: -61, y: -226}
+      - {x: -31, y: -166}
+      - {x: 249, y: -129}
+      - {x: 250, y: -183}
+      - {x: 62, y: -350}
     physicsShape: []
     bones: []
-    spriteID: 8a0c5fee23146c04c839063615c43b6f
+    spriteID: a9ed1fd1992279f4a81027b4e0217f66
     vertices: []
     indices: 
     edges: []

@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerPunch : MonoBehaviour {
-    public int damage = 5;
+public class Escalera : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

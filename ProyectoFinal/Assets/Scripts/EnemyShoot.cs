@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class EnemyShoot : MonoBehaviour {
     
-    public int damage = 1;
+    public int damage = 10;
     Rigidbody2D bulletRB;
     
     // Use this for initialization
     void Start()
     {
         bulletRB = GetComponent<Rigidbody2D>();
-        bulletRB.velocity = transform.right * -10f;
-        Destroy(gameObject, 2);
+        bulletRB.velocity = transform.right * -8f;
+        Destroy(gameObject, 1);
     }
     
     void Update()

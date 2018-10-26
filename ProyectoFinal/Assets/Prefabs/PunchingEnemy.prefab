@@ -31,7 +31,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4695473566460838
 Transform:
   m_ObjectHideFlags: 1
@@ -133,6 +133,8 @@ MonoBehaviour:
   enemyHealth: 1
   speedX: 2.3
   speedY: 1.7
+  LeftPunch: {fileID: 0}
+  RightPunch: {fileID: 0}
 --- !u!212 &212696063399282740
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -176,6 +178,6 @@ SpriteRenderer:
   m_Size: {x: 0.35, y: 0.79}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0

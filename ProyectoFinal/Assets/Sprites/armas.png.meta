@@ -2,7 +2,22 @@ fileFormatVersion: 2
 guid: 4b04210487de59c44b70e3696b41d88a
 TextureImporter:
   fileIDToRecycleName:
-    21300000: armas_0
+    21300000: Shield
+    21300002: armas_1Bullet
+    21300004: armas_2
+    21300006: armas_3
+    21300008: armas_4
+    21300010: armas_5
+    21300012: armas_6
+    21300014: MedKit
+    21300016: armas_8
+    21300018: Pistolarmas_9
+    21300020: armas_10
+    21300022: armas_11
+    21300024: armas_12
+    21300026: armas_13
+    21300028: armas_14
+    21300030: armas_15
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -51,7 +66,7 @@ TextureImporter:
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: -1
+  spriteTessellationDetail: 0
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -107,34 +122,330 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: armas_0
+      name: Shield
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 2100
-        height: 1500
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 156
+        y: 335
+        width: 526
+        height: 882
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 40, y: 218}
-        - {x: 40, y: 282}
-        - {x: 138, y: 279}
-        - {x: 136, y: 218}
-      - - {x: 132, y: 280}
-        - {x: 132, y: 280}
-        - {x: 135, y: 280}
-        - {x: 135, y: 280}
+      outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 28bb247c565eae343ba4641cbb76ce99
+      spriteID: 843887dded458cd43b123b6c52b1a0e1
       vertices: []
       indices: 
       edges: []
       weights: []
-    outline: []
+    - serializedVersion: 2
+      name: armas_1Bullet
+      rect:
+        serializedVersion: 2
+        x: 1090
+        y: 967
+        width: 98
+        height: 67
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d14fe42936fcf434db1a9fd0ace1765e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: armas_2
+      rect:
+        serializedVersion: 2
+        x: 827
+        y: 882
+        width: 170
+        height: 67
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5ea9a893eedad44684e1d9c6a2b7c47
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: armas_3
+      rect:
+        serializedVersion: 2
+        x: 978
+        y: 807
+        width: 831
+        height: 142
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30dd21fa34dd64d4b8627af06421aab5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: armas_4
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 779
+        width: 28
+        height: 10
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8e4f8da163e93c498e871d188e1b4cd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: armas_5
+      rect:
+        serializedVersion: 2
+        x: 978
+        y: 655
+        width: 413
+        height: 85
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4776635fa29d17d488fe4798e440f386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: armas_6
+      rect:
+        serializedVersion: 2
+        x: 1423
+        y: 694
+        width: 5
+        height: 14
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9843180764881643b59bd25e5052e55
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MedKit
+      rect:
+        serializedVersion: 2
+        x: 1574
+        y: 614
+        width: 151
+        height: 163
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3a59b3f48dda344789a1d6936fd4c67
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: armas_8
+      rect:
+        serializedVersion: 2
+        x: 1424
+        y: 668
+        width: 4
+        height: 4
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ab3f6ad512e5924ca24bac3dbaf13f5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pistolarmas_9
+      rect:
+        serializedVersion: 2
+        x: 1088
+        y: 400
+        width: 307
+        height: 231
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 792955ebda469784bad1c4441dda9b14
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: armas_10
+      rect:
+        serializedVersion: 2
+        x: 1848
+        y: 622
+        width: 11
+        height: 8
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 196f83a5f4d26364a8c05270edeebe31
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: armas_11
+      rect:
+        serializedVersion: 2
+        x: 1355
+        y: 358
+        width: 247
+        height: 233
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61b43646eb12d1042baccff8a0c620b7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: armas_12
+      rect:
+        serializedVersion: 2
+        x: 1633
+        y: 427
+        width: 18
+        height: 106
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e39af10da91b3c43a23ef395e6ef29a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: armas_13
+      rect:
+        serializedVersion: 2
+        x: 1938
+        y: 512
+        width: 6
+        height: 13
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3224154f346a08343ae997ac5295b650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: armas_14
+      rect:
+        serializedVersion: 2
+        x: 1066
+        y: 295
+        width: 685
+        height: 107
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af3cfeff42bea9246a1f217e3cf53b1d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: armas_15
+      rect:
+        serializedVersion: 2
+        x: 1870
+        y: 367
+        width: 14
+        height: 16
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c6ca84bfe9d9f04c8bac49e892c8ece
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline:
+    - - {x: 527, y: -140}
+      - {x: 521, y: 24}
+      - {x: 670, y: 25}
+      - {x: 677, y: -136}
     physicsShape: []
     bones: []
     spriteID: 7f58d2c90aaf63d498272c3bbd5a4785
