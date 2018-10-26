@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyShoot : MonoBehaviour {
     
-    public int damage = 10;
+    public int damage = 5;
     Rigidbody2D bulletRB;
     
     // Use this for initialization

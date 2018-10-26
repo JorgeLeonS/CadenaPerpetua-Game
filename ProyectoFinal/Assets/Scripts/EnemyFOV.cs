@@ -25,11 +25,14 @@ public class EnemyFOV : MonoBehaviour {
     Transform player;
     Vector3 target;
 
+    Animator anim;
+
 
     // Use this for initialization
     void Start()
     {
         enemyRen = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
 
         if (rigidbodyComponent == null)
             rigidbodyComponent = GetComponent<Rigidbody2D>();
@@ -44,6 +47,7 @@ public class EnemyFOV : MonoBehaviour {
         Patrol = true;
     }
 
+    Vector2 cntrl;
     // Update is called once per frame
     void Update()
     {
@@ -89,7 +93,10 @@ public class EnemyFOV : MonoBehaviour {
 
             }
         }
-        
+
+        cntrl = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        anim.SetBool("WalkCop", cntrl.magnitude != 0);
+
 
     }
     
@@ -109,6 +116,7 @@ public class EnemyFOV : MonoBehaviour {
         {
             ChangeEnemyLife(playerShot.damage);
             Destroy(playerShot.gameObject);
+            anim.SetTrigger("ReceiveDamage");
         }
 
         Player player = collision.gameObject.GetComponent<Player>();
@@ -116,6 +124,7 @@ public class EnemyFOV : MonoBehaviour {
         {
             canShoot = true;
             InvokeRepeating("EnemyShotAttack", 0, 1f);
+            anim.SetTrigger("CopShot");
         }
 
         PlayerPunch punch = collision.gameObject.GetComponent<PlayerPunch>();

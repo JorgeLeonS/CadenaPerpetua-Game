@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
     //-184 86
     //Informacion Basica del Jugador
-    public int playerHealth = 50;
+    public int playerHealth = 100;
     public int playerShield = 0;
     public int speedX = 6;
     public int speedY = 4;
@@ -114,6 +114,7 @@ public class Player : MonoBehaviour
             //Si tiene arma, dispara
             if (hasWeapon == true)
             {
+                anim.SetTrigger("ShootMain");
                 shootCooldown = fireRate;
                 Instantiate(PlayerBullet, PlayerCenter.transform.position, PlayerCenter.transform.rotation);
             }
@@ -158,18 +159,15 @@ public class Player : MonoBehaviour
         {
             playerHealth = playerHealth - damage;
         }
+        else if (damage > playerShield)
+        {
+            playerShield = 0;
+        }
         else
         {
-            if (damage > playerShield)
-            {
-                playerShield = 0;
-            }
-            else
-            {
-                playerShield = playerShield - damage;
-            }
-            
+            playerShield = playerShield - damage;
         }
+            
         
         if (damage > playerHealth && playerShield == 0)
         {
