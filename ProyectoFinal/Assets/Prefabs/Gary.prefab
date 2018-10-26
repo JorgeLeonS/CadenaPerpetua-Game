@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4239695742971398}
   - component: {fileID: 61059106858557704}
-  - component: {fileID: 114269362285931156}
+  - component: {fileID: 114685856141097464}
   m_Layer: 9
   m_Name: LeftPunch
   m_TagString: Untagged
@@ -52,7 +52,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4034336586428858}
   - component: {fileID: 61276351421106888}
-  - component: {fileID: 114625237667145688}
+  - component: {fileID: 114329005758064080}
   m_Layer: 9
   m_Name: RightPunch
   m_TagString: Untagged
@@ -261,18 +261,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24befcf6e36c08d44997ac688babc3d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114269362285931156
+--- !u!114 &114329005758064080
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1025025648837414}
+  m_GameObject: {fileID: 1275902279600688}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4a2727d34d4f0f646a9fe525fc86dd8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 5
 --- !u!114 &114490117441087908
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -297,18 +297,18 @@ MonoBehaviour:
   PlayerCenter: {fileID: 1070556650043014}
   rightPunch: {fileID: 1275902279600688}
   leftPunch: {fileID: 1025025648837414}
---- !u!114 &114625237667145688
+--- !u!114 &114685856141097464
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1275902279600688}
+  m_GameObject: {fileID: 1025025648837414}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4a2727d34d4f0f646a9fe525fc86dd8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 5
 --- !u!114 &114960289211388070
 MonoBehaviour:
   m_ObjectHideFlags: 1

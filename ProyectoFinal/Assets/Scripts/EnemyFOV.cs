@@ -125,7 +125,6 @@ public class EnemyFOV : MonoBehaviour {
         {
             canShoot = true;
             InvokeRepeating("EnemyShotAttack", 0, 1f);
-            anim.SetTrigger("CopShot");
         }
 
         PlayerPunch punch = collision.gameObject.GetComponent<PlayerPunch>();
@@ -163,11 +162,12 @@ public class EnemyFOV : MonoBehaviour {
                 enemyRen.flipX = movement.x > 0;
             }
             
-            if (movement.magnitude < 0.7f)
+            if (movement.magnitude < 1.3f)
                 movement = Vector2.zero;
             movement.Normalize();
             rigidbodyComponent.velocity = new Vector2(movement.x * speedX, movement.y * speedY);
-            
+            transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, limiteY.x, limiteY.y), 0);
+
         }
     }
 
@@ -187,6 +187,7 @@ public class EnemyFOV : MonoBehaviour {
 
     void EnemyShotAttack()
     {
+        anim.SetTrigger("CopShot");
         Instantiate(EnemyBullet, EnemyCenter.transform.position, EnemyCenter.transform.rotation);
     }
 }

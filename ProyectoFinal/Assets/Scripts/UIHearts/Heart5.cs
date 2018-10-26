@@ -15,7 +15,7 @@ public class Heart5 : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //Animación corazones
-        if (player.playerHealth <= 10)
+        if (player.playerHealth <= 10 && player.playerHealth > 0)
         {
             animH.SetBool("FullHeart", false);
             animH.SetBool("HalfHeart", true);

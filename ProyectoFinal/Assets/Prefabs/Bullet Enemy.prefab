@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212626436220144988}
   - component: {fileID: 61404607300003144}
   - component: {fileID: 50440276775746832}
-  - component: {fileID: 114665224023393156}
+  - component: {fileID: 114445370512599908}
   m_Layer: 10
   m_Name: Bullet Enemy
   m_TagString: Untagged
@@ -88,7 +88,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.94254017, y: 0.63116133}
   m_EdgeRadius: 0
---- !u!114 &114665224023393156
+--- !u!114 &114445370512599908
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}

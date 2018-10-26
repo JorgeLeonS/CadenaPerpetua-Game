@@ -17,7 +17,7 @@ public class Heart4 : MonoBehaviour {
     void Update()
     {
         //Animación corazones
-        if (player.playerHealth <= 30)
+        if (player.playerHealth <= 30 && player.playerHealth > 20)
         {
             animH.SetBool("FullHeart", false);
             animH.SetBool("HalfHeart", true);

@@ -13,10 +13,11 @@ public class Player : MonoBehaviour
     public int speedX = 6;
     public int speedY = 4;
     Vector2 limiteX = new Vector2(-184f, 86f); //Limite en Y del jugador 
-    Vector2 limiteY = new Vector2(-3.5f, 2.94f); //Limite en Y del jugador estando en la planta baja
+    Vector2 limiteY = new Vector2(-3.5f, 2.81f); //Limite en Y del jugador estando en la planta baja
     Vector2 limiteEscalera = new Vector2(7.83f, 7.83f); //Limite en Y del jugador estando en la planta alta
     public bool GoThroughFloors; //Booleano para saber si esta adentro del collider de la escalera
     public bool OnUpperLevel; //Booleano para saber si esta en la planta alta
+    public bool isDead = false;
 
     private Rigidbody2D rigidbodyComponent;
     SpriteRenderer spriteComponent;
@@ -60,6 +61,15 @@ public class Player : MonoBehaviour
     Vector2 cntrl;
     void Update()
     {
+        if (playerShield > 0)
+        {
+            spriteComponent.GetComponent<SpriteRenderer>().color = Color.cyan;
+        }
+        else
+        {
+            spriteComponent.GetComponent<SpriteRenderer>().color = Color.white;
+        }
+
         //Variables de movimiento
         float inputX = Input.GetAxis("Horizontal") * speedX;
         float inputY = Input.GetAxis("Vertical") * speedY;
@@ -142,16 +152,12 @@ public class Player : MonoBehaviour
 
     } //Update Ends
 
-    void OnGUI()
+    /*void OnGUI()
     {
         GUILayout.Label("Player Life: " + playerHealth);
         GUILayout.Label("Player Shield: " + playerShield);
-    }
-
-    void FixedUpdate()
-    {
-
-    }
+    }*/
+    
 
     //Metodo de perder vida y/o escudo
     public void ChangePlayerLife(int damage)
@@ -174,14 +180,11 @@ public class Player : MonoBehaviour
         {
             playerHealth = 0;
         }
-        else
-        {
-            playerHealth = playerHealth - damage;
-        }
         
         if (playerHealth <= 0 && playerShield == 0)
         {
-            Destroy(gameObject);
+            isDead = true;
+            SceneManager.LoadScene("Level1");
         }
     }
 

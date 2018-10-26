@@ -18,6 +18,10 @@ public class FinishLevel1 : MonoBehaviour {
     {
         //Colision con box collider para terminar nivel 
         Player playerCol = collision.gameObject.GetComponent<Player>();
-        SceneManager.LoadScene("Level1Complete");
+        if (playerCol != null)
+        {
+            SceneManager.LoadScene("Level1Complete");
+        }
+        
     }
 }
