@@ -22,6 +22,8 @@ public class EnemyFOV : MonoBehaviour {
     public GameObject EnemyCenter;
     //public GameObject EnemyShootingPoint;
 
+    GameObject MainPlayer;
+    Player Gary;
     Transform player;
     Vector3 target;
 
@@ -45,6 +47,9 @@ public class EnemyFOV : MonoBehaviour {
         enemyPosx = transform.position.x;
         dirRight = false;
         Patrol = true;
+
+        MainPlayer = GameObject.FindGameObjectWithTag("Player");
+        Gary = MainPlayer.GetComponent<Player>();
     }
 
     Vector2 cntrl;
@@ -107,7 +112,11 @@ public class EnemyFOV : MonoBehaviour {
         anim.SetTrigger("ReceiveDamage");
 
         if (enemyHealth == 0)
+        {
             Destroy(gameObject);
+            Gary.UpdateScore(100);
+        }
+            
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

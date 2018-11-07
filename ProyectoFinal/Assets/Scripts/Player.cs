@@ -10,9 +10,10 @@ public class Player : MonoBehaviour
     //Informacion Basica del Jugador
     public int playerHealth = 100;
     public int playerShield = 0;
+    public int playerScore = 0;
     public int speedX = 6;
     public int speedY = 4;
-    Vector2 limiteX = new Vector2(-184f, 86f); //Limite en Y del jugador 
+    Vector2 limiteX = new Vector2(-184f, 95f); //Limite en Y del jugador 
     Vector2 limiteY = new Vector2(-3.5f, 2.81f); //Limite en Y del jugador estando en la planta baja
     Vector2 limiteEscalera = new Vector2(7.83f, 7.83f); //Limite en Y del jugador estando en la planta alta
     public bool GoThroughFloors; //Booleano para saber si esta adentro del collider de la escalera
@@ -33,6 +34,8 @@ public class Player : MonoBehaviour
     public GameObject rightPunch;
     public GameObject leftPunch;
 
+    public GameObject PistolIndicator;
+
     //
     Animator anim;
     
@@ -52,6 +55,7 @@ public class Player : MonoBehaviour
 
         rightPunch.SetActive(false);
         leftPunch.SetActive(false);
+        PistolIndicator.SetActive(false);
 
         GoThroughFloors = false;
         OnUpperLevel = false;
@@ -119,7 +123,7 @@ public class Player : MonoBehaviour
 
         bool attack = Input.GetKeyDown(KeyCode.Space);
 
-        //COndicional para ver si puede atacar una vez que se pico la barra espaciadora
+        //Condicional para ver si puede atacar una vez que se pico la barra espaciadora
         if (attack & CanAttack == true)
         {
             //Si tiene arma, dispara
@@ -137,10 +141,11 @@ public class Player : MonoBehaviour
                 StartCoroutine("DoPunch");
                 
             }
-            
+
 
         }
         
+
         //Si esta adentro de una escalera y presiona Shift Derecho, se movera entre pisos
         if (Input.GetKeyDown(KeyCode.RightShift) && GoThroughFloors == true)
         {
@@ -152,11 +157,10 @@ public class Player : MonoBehaviour
 
     } //Update Ends
 
-    /*void OnGUI()
+    void OnGUI()
     {
-        GUILayout.Label("Player Life: " + playerHealth);
-        GUILayout.Label("Player Shield: " + playerShield);
-    }*/
+        GUILayout.Label("Score: " + playerScore);
+    }
     
 
     //Metodo de perder vida y/o escudo
@@ -188,6 +192,12 @@ public class Player : MonoBehaviour
         }
     }
 
+    //Metodo para actualizar el puntaje del jugador
+    public void UpdateScore(int score)
+    {
+        playerScore = playerScore + score;
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -206,6 +216,7 @@ public class Player : MonoBehaviour
         if (weapon != null)
         {
             hasWeapon = true;
+            PistolIndicator.SetActive(true);
         }
 
         //Colision con medkit
@@ -214,6 +225,7 @@ public class Player : MonoBehaviour
         {
             MedKitFunction();
             Destroy(medkit.gameObject);
+            
         }
 
         //Colision con escudo
@@ -223,10 +235,7 @@ public class Player : MonoBehaviour
             ShieldFunction();
             Destroy(shield.gameObject);
         }
-
-
-
-
+        
 
     }
 
@@ -293,12 +302,13 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(transform.position.x, 2.94f, transform.position.z);
         }
     }
-
+    
     //Items
     public void MedKitFunction()
     {
         //Metodo para tomar vida
         playerHealth = playerHealth + 25;
+        
     }
 
     public void ShieldFunction()
