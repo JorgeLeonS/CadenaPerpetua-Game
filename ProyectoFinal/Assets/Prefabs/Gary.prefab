@@ -129,7 +129,7 @@ Transform:
   m_GameObject: {fileID: 1995512204377202}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -18.95, y: -1.31, z: 0.13740252}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children:
   - {fileID: 4265804664533970}
   - {fileID: 4034336586428858}
@@ -286,10 +286,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealth: 50
   playerShield: 0
+  playerScore: 0
   speedX: 6
   speedY: 4
   GoThroughFloors: 0
   OnUpperLevel: 0
+  isDead: 0
   hasWeapon: 0
   fireRate: 0.25
   PlayerBullet: {fileID: 1754022416533750, guid: 757df7b2a4eb8264896ecb394e9fe6d4,
@@ -297,6 +299,7 @@ MonoBehaviour:
   PlayerCenter: {fileID: 1070556650043014}
   rightPunch: {fileID: 1275902279600688}
   leftPunch: {fileID: 1025025648837414}
+  PistolIndicator: {fileID: 0}
 --- !u!114 &114685856141097464
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -84,7 +84,7 @@ Transform:
   m_GameObject: {fileID: 1149132171885016}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -120.2, y: 7.8, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4388453909461742}
   - {fileID: 4293953140137182}
@@ -206,7 +206,7 @@ MonoBehaviour:
   enemyHealth: 10
   speedX: 2.3
   speedY: 1.7
-  limiteY: {x: 7.83, y: 7.83}
+  limiteY: {x: 8.46, y: 8.46}
   patrollingSpeed: 2
   enemyPosx: 0
   canShoot: 0

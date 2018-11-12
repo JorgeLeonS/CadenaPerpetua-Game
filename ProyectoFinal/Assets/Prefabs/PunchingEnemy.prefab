@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4695473566460838}
   - component: {fileID: 212696063399282740}
-  - component: {fileID: 95690470565173102}
   - component: {fileID: 61873871119342394}
   - component: {fileID: 114695648896672802}
   - component: {fileID: 114629661419943316}
@@ -40,7 +39,7 @@ Transform:
   m_GameObject: {fileID: 1040512854353018}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.06, y: -1.94, z: 0}
-  m_LocalScale: {x: -3.021, y: 3, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -90,24 +89,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.35, y: 0.79}
   m_EdgeRadius: 0
---- !u!95 &95690470565173102
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1040512854353018}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6e27cdc8a9d2143b2b90bbf509c07b28, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114629661419943316
 MonoBehaviour:
   m_ObjectHideFlags: 1

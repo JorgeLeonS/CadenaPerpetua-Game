@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     public int speedY = 4;
     Vector2 limiteX = new Vector2(-184f, 95f); //Limite en Y del jugador 
     Vector2 limiteY = new Vector2(-3.5f, 2.81f); //Limite en Y del jugador estando en la planta baja
-    Vector2 limiteEscalera = new Vector2(7.83f, 7.83f); //Limite en Y del jugador estando en la planta alta
+    Vector2 limiteEscalera = new Vector2(8.28f, 8.28f); //Limite en Y del jugador estando en la planta alta
     public bool GoThroughFloors; //Booleano para saber si esta adentro del collider de la escalera
     public bool OnUpperLevel; //Booleano para saber si esta en la planta alta
     public bool isDead = false;
@@ -157,10 +157,12 @@ public class Player : MonoBehaviour
 
     } //Update Ends
 
+    /*
     void OnGUI()
     {
         GUILayout.Label("Score: " + playerScore);
     }
+    */
     
 
     //Metodo de perder vida y/o escudo

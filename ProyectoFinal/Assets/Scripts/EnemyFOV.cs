@@ -22,6 +22,8 @@ public class EnemyFOV : MonoBehaviour {
     public GameObject EnemyCenter;
     //public GameObject EnemyShootingPoint;
 
+    GameObject PScore;
+    PlayerScore Score;
     GameObject MainPlayer;
     Player Gary;
     Transform player;
@@ -50,6 +52,9 @@ public class EnemyFOV : MonoBehaviour {
 
         MainPlayer = GameObject.FindGameObjectWithTag("Player");
         Gary = MainPlayer.GetComponent<Player>();
+
+        PScore = GameObject.FindGameObjectWithTag("Score");
+        Score = PScore.GetComponent<PlayerScore>();
     }
 
     Vector2 cntrl;
@@ -113,8 +118,10 @@ public class EnemyFOV : MonoBehaviour {
 
         if (enemyHealth == 0)
         {
+            Gary.UpdateScore(10);
+            Score.ChangeScore();
             Destroy(gameObject);
-            Gary.UpdateScore(100);
+            
         }
             
     }
