@@ -129,7 +129,7 @@ public class Player : MonoBehaviour
             //Si tiene arma, dispara
             if (hasWeapon == true)
             {
-                //anim.SetTrigger("ShootMain"); AUN NO ESTÁ LA ANIMACIÓN
+                anim.SetTrigger("ShootMain");
                 shootCooldown = fireRate;
                 Instantiate(PlayerBullet, PlayerCenter.transform.position, PlayerCenter.transform.rotation);
             }
@@ -144,7 +144,15 @@ public class Player : MonoBehaviour
 
 
         }
-        
+
+        //Protagonista en guardia
+
+        anim.SetBool("ProtGuard", Input.GetKey(KeyCode.C));
+        /* CHECK ENEMY DAMAGE  = 0
+        if(Input.GetKey(KeyCode.C)&&)
+        while(ProtGuard){
+            EnemyDamage = 0;
+        }*/
 
         //Si esta adentro de una escalera y presiona Shift Derecho, se movera entre pisos
         if (Input.GetKeyDown(KeyCode.RightShift) && GoThroughFloors == true)
@@ -152,8 +160,9 @@ public class Player : MonoBehaviour
             MoveThroughFloors();
         }
 
-        //FALTA CÓDIGO PARA QUE NO EJECUTE OTRA ANIMACIÓN IMENTRAS ESTÉ OTRA 16:00
+        //FALTA CÓDIGO PARA QUE NO EJECUTE OTRA ANIMACIÓN IMENTRAS ESTÉ OTRA 16:00 y 20:00
 
+       
 
     } //Update Ends
 
@@ -289,7 +298,9 @@ public class Player : MonoBehaviour
             leftPunch.SetActive(false);
         }
     }
+  
 
+    //Metodo para subir las escaleras
     public void MoveThroughFloors()
     {
         //Condicional para moverse de la planta baja a la alta y viceversa
