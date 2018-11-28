@@ -9,8 +9,8 @@ public class PlayerShoot : MonoBehaviour {
     void Start()
     {
         bulletRB = GetComponent<Rigidbody2D>();
-        bulletRB.velocity = transform.right * 8f;
-        Destroy(gameObject, 0.8f);
+        bulletRB.velocity = transform.right * 12f;
+        Destroy(gameObject, 1f);
     }
 
     void Update()
