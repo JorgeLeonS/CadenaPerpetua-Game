@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapons : MonoBehaviour {
+public class EnemyPunch : MonoBehaviour {
+    public int damage = 5;
 
-    // Use this for initialization
-    void Start () {
+	// Use this for initialization
+	void Start () {
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        
-    }
+		
+	}
 }

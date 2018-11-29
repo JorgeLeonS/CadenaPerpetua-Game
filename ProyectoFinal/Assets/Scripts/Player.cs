@@ -24,7 +24,6 @@ public class Player : MonoBehaviour
     SpriteRenderer spriteComponent;
 
     //Informacion Basica de sus armas
-    public bool hasWeapon = false;
     public float fireRate = 0.15f;
     private double shootCooldown;
 
@@ -33,8 +32,15 @@ public class Player : MonoBehaviour
     public GameObject PlayerCenter;
     public GameObject rightPunch;
     public GameObject leftPunch;
+    string CurrentWeapon;
+    bool GunUnlocked;
+    bool MacanaUnlocked;
+    bool KnifeUnlocked;
 
     public GameObject PistolIndicator;
+    public GameObject KnifeIndicator;
+    public GameObject MacanaIndicator;
+    public GameObject ShieldIndicator;
 
     //
     Animator anim;
@@ -56,50 +62,76 @@ public class Player : MonoBehaviour
         rightPunch.SetActive(false);
         leftPunch.SetActive(false);
         PistolIndicator.SetActive(false);
+        KnifeIndicator.SetActive(false);
+        PistolIndicator.SetActive(false);
+        ShieldIndicator.SetActive(false);
 
         GoThroughFloors = false;
         OnUpperLevel = false;
+
+        CurrentWeapon = "Punch";
+        MacanaUnlocked = false;
+        KnifeUnlocked = false;
+        GunUnlocked = false;
     }
 
     // Update is called once per frame
-    Vector2 cntrl;
     void Update()
     {
         if (playerShield > 0)
         {
             spriteComponent.GetComponent<SpriteRenderer>().color = Color.cyan;
+            ShieldIndicator.SetActive(true);
         }
         else
         {
             spriteComponent.GetComponent<SpriteRenderer>().color = Color.white;
+            ShieldIndicator.SetActive(false);
         }
 
         //Variables de movimiento
         float inputX = Input.GetAxis("Horizontal") * speedX;
         float inputY = Input.GetAxis("Vertical") * speedY;
 
-        //Condicional para ver la direccion de la imagen del jugador
-        if (inputX != 0)
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("DamageMain") &&
+            !anim.GetCurrentAnimatorStateInfo(0).IsName("PunchMain") &&
+            !anim.GetCurrentAnimatorStateInfo(0).IsName("KnifeAttackMain") &&
+            !anim.GetCurrentAnimatorStateInfo(0).IsName("MacanaAttackMain") &&
+            !anim.GetCurrentAnimatorStateInfo(0).IsName("ShootMain") && 
+            (inputX !=0 | inputY !=0))
         {
-            if (inputX < 0)
+            
+            //Condicional para ver la direccion de la imagen del jugador
+            if (inputX != 0)
             {
-                spriteComponent.flipX = inputX < 0;
-                var rotation = PlayerCenter.transform.rotation;
-                rotation.y = 180;
-                PlayerCenter.transform.rotation = rotation;
-                
-            }
-            else
-            {
-                spriteComponent.flipX = false;
-                var rotation = PlayerCenter.transform.rotation;
-                rotation.y = 0;
-                PlayerCenter.transform.rotation = rotation;
+                if (inputX < 0)
+                {
+                    spriteComponent.flipX = inputX < 0;
+                    var rotation = PlayerCenter.transform.rotation;
+                    rotation.y = 180;
+                    PlayerCenter.transform.rotation = rotation;
+
+                }
+                else
+                {
+                    spriteComponent.flipX = false;
+                    var rotation = PlayerCenter.transform.rotation;
+                    rotation.y = 0;
+                    PlayerCenter.transform.rotation = rotation;
+                }
+
             }
             
-        }
+            rigidbodyComponent.velocity = new Vector2(inputX, inputY);
+            anim.SetBool("IsWalking", true);
 
-        rigidbodyComponent.velocity = new Vector2(inputX, inputY);
+        }
+        else
+        {
+            rigidbodyComponent.velocity = Vector3.zero;
+            anim.SetBool("IsWalking", false);
+
+        }
 
         //Condicional para, dependiendo del piso en el que este, los limites que lo contienen en Y
         if (OnUpperLevel == false)
@@ -110,10 +142,7 @@ public class Player : MonoBehaviour
         {
             transform.position = new Vector3(Mathf.Clamp(transform.position.x, limiteX.x, limiteX.y), Mathf.Clamp(transform.position.y, limiteEscalera.x, limiteEscalera.y), transform.position.z);
         }
-        
-        //Si se mueve el personaje, la animacion de movimiento se ejecutara
-        cntrl = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        anim.SetBool("IsWalking", cntrl.magnitude != 0);
+
 
         //Validar si el personaje puede atacar
         if (shootCooldown > 0)
@@ -126,24 +155,85 @@ public class Player : MonoBehaviour
         //Condicional para ver si puede atacar una vez que se pico la barra espaciadora
         if (attack & CanAttack == true)
         {
-            //Si tiene arma, dispara
-            if (hasWeapon == true)
+
+            //Si su arma actual son los puños, ataca
+            if (CurrentWeapon == "Punch")
+            {
+                
+                shootCooldown = fireRate;
+                anim.SetTrigger("SendPunch");
+                StartCoroutine("DoMelee");
+            }
+
+            //Si su arma actual es la pistola, ataca
+            if (CurrentWeapon == "Pistol")
             {
                 anim.SetTrigger("ShootMain");
                 shootCooldown = fireRate;
                 Instantiate(PlayerBullet, PlayerCenter.transform.position, PlayerCenter.transform.rotation);
             }
-            else
+
+            //Si su arma actual es la macana, ataca
+            if (CurrentWeapon == "Macana")
             {
-                //Si no tiene arma dara un puñetazo
-                shootCooldown = fireRate;   
-                anim.SetTrigger("SendPunch");
-                StartCoroutine("DoPunch");
-                
+                shootCooldown = fireRate;
+                anim.SetTrigger("MacanaAttack");
+                StartCoroutine("DoMelee");
             }
 
+            //Si su arma actual es el cuchillo, ataca
+            if (CurrentWeapon == "Knife")
+            {
+                shootCooldown = fireRate;
+                anim.SetTrigger("KnifeAttack");
+                StartCoroutine("DoMelee");
+            }
 
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            CurrentWeapon = "Punch";
+
+        if (Input.GetKeyDown(KeyCode.Alpha2) && MacanaUnlocked == true)
+            CurrentWeapon = "Macana";
+
+        if (Input.GetKeyDown(KeyCode.Alpha3) && KnifeUnlocked == true)
+            CurrentWeapon = "Knife";
+
+        if (Input.GetKeyDown(KeyCode.Alpha4) && GunUnlocked == true)
+            CurrentWeapon = "Pistol";
+
+
+        if (CurrentWeapon == "Punch")
+        {
+            PistolIndicator.SetActive(false);
+            KnifeIndicator.SetActive(false);
+            MacanaIndicator.SetActive(false);
+        }
+
+
+        if (CurrentWeapon == "Pistol")
+        {
+            PistolIndicator.SetActive(true);
+            KnifeIndicator.SetActive(false);
+            MacanaIndicator.SetActive(false);
+        }
+
+
+        if (CurrentWeapon == "Macana")
+        {
+            PistolIndicator.SetActive(false);
+            KnifeIndicator.SetActive(false);
+            MacanaIndicator.SetActive(true);
+        }
+
+        if (CurrentWeapon == "Knife")
+        {
+            PistolIndicator.SetActive(false);
+            KnifeIndicator.SetActive(true);
+            MacanaIndicator.SetActive(false);
+        }
+
 
         //Protagonista en guardia
 
@@ -160,11 +250,9 @@ public class Player : MonoBehaviour
             MoveThroughFloors();
         }
 
-        //FALTA CÓDIGO PARA QUE NO EJECUTE OTRA ANIMACIÓN IMENTRAS ESTÉ OTRA 16:00 y 20:00
 
-       
 
-    } //Update Ends
+    }
 
     /*
     void OnGUI()
@@ -222,12 +310,39 @@ public class Player : MonoBehaviour
             
         }
 
-        //Colision con un arma
-        Weapons weapon = collision.gameObject.GetComponent<Weapons>();
-        if (weapon != null)
+        EnemyPunch punch = collision.gameObject.GetComponent<EnemyPunch>();
+        if (punch != null)
         {
-            hasWeapon = true;
-            PistolIndicator.SetActive(true);
+            ChangePlayerLife(punch.damage);
+            anim.SetTrigger("ReceivePunch");
+
+        }
+
+        //Colision con una pistola
+        Pistol pistol = collision.gameObject.GetComponent<Pistol>();
+        if (pistol != null)
+        {
+            CurrentWeapon = "Pistol";
+            GunUnlocked = true;
+            Destroy(pistol.gameObject);
+        }
+
+        //Colision con una macana
+        Knife knife = collision.gameObject.GetComponent<Knife>();
+        if (knife != null)
+        {
+            CurrentWeapon = "Knife";
+            KnifeUnlocked = true;
+            Destroy(knife.gameObject);
+        }
+
+        //Colision con un cuchillo
+        Macana macana = collision.gameObject.GetComponent<Macana>();
+        if (macana != null)
+        {
+            CurrentWeapon = "Macana";
+            MacanaUnlocked = true;
+            Destroy(macana.gameObject);
         }
 
         //Colision con medkit
@@ -280,7 +395,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    IEnumerator DoPunch()
+    IEnumerator DoMelee()
     {
         //Condicionales para validar la direccion del personaje y dar un puñetazo
         if (spriteComponent.flipX == false)

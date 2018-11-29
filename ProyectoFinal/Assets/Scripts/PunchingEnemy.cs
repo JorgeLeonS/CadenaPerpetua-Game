@@ -4,38 +4,169 @@ using UnityEngine;
 
 public class PunchingEnemy : MonoBehaviour
 {
-
-    public int enemyHealth = 1;
+    public int enemyHealth = 10;
     public float speedX = 2.3f;
     public float speedY = 1.7f;
+    public Vector2 limiteY = new Vector2(-3.5f, 2.197f);
     private Vector2 movement;
     private Rigidbody2D rigidbodyComponent;
     private SpriteRenderer enemyRen;
+    private bool canAttack;
+    public GameObject rightPunch;
+    public GameObject leftPunch;
+    public float fireRate = 0.5f;
+    private double shootCooldown;
 
+    private bool dirRight = true;
+    bool Patrol;
+    public float patrollingSpeed = 2.0f;
+    public float enemyPosx;
+    
 
-    public Transform LeftPunch;
-    public Transform RightPunch;
+    GameObject PScore;
+    PlayerScore Score;
+    GameObject MainPlayer;
+    Player Gary;
     Transform player;
     Vector3 target;
+
+    Animator anim;
 
 
     // Use this for initialization
     void Start()
     {
         enemyRen = GetComponent<SpriteRenderer>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        anim = GetComponent<Animator>();
 
         if (rigidbodyComponent == null)
             rigidbodyComponent = GetComponent<Rigidbody2D>();
+
         
+
+        enemyPosx = transform.position.x;
+        dirRight = false;
+        Patrol = true;
+
+        MainPlayer = GameObject.FindGameObjectWithTag("Player");
+        Gary = MainPlayer.GetComponent<Player>();
+
+        rightPunch.SetActive(false);
+        leftPunch.SetActive(false);
+
+        PScore = GameObject.FindGameObjectWithTag("Score");
+        Score = PScore.GetComponent<PlayerScore>();
     }
+    
+    // Update is called once per frame
+    void Update()
+    {
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("FireCop") &&
+            !anim.GetCurrentAnimatorStateInfo(0).IsName("DamageCop"))
+        {
+            anim.SetBool("WalkCop", true);
+
+            if (Patrol == true)
+            {
+
+                if (dirRight)
+                {
+                    rigidbodyComponent.velocity = new Vector2(speedX, 0);
+                    transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, limiteY.x, limiteY.y), 0);
+
+                }
+                else
+                {
+                    rigidbodyComponent.velocity = new Vector2(-speedX, 0);
+                    transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, limiteY.x, limiteY.y), 0);
+                }
+
+                if (transform.position.x >= enemyPosx)
+                {
+                    dirRight = false;
+                    var rotation = transform.rotation;
+                    rotation.y = 0;
+                    transform.rotation = rotation;
+
+                }
+
+                if (transform.position.x <= (enemyPosx - 4))
+                {
+                    dirRight = true;
+                    var rotation = transform.rotation;
+                    rotation.y = 180;
+                    transform.rotation = rotation;
+
+                }
+            }
+            else
+            {
+                movement = target - transform.position;
+
+                if (movement.x > 0)
+                {
+                    var rotation = transform.rotation;
+                    rotation.y = 180;
+                    transform.rotation = rotation;
+                    enemyRen.flipX = movement.x < 0;
+
+                }
+                else
+                {
+                    var rotation = transform.rotation;
+                    rotation.y = 0;
+                    transform.rotation = rotation;
+                    enemyRen.flipX = movement.x > 0;
+                }
+
+                if (movement.magnitude < 1.5f)
+                {
+                    movement = Vector2.zero;
+                }
+
+                movement.Normalize();
+                rigidbodyComponent.velocity = new Vector2(movement.x * speedX, movement.y * speedY);
+                transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, limiteY.x, limiteY.y), 0);
+
+            }
+        }
+        else
+        {
+            rigidbodyComponent.velocity = Vector3.zero;
+        }
+
+        if (shootCooldown > 0)
+        {
+            shootCooldown -= Time.deltaTime;
+        }
+
+        if (Vector3.Distance(target, transform.position) < 1.5f)
+        {
+            if (CanAttack == true)
+            {
+                shootCooldown = fireRate;
+                StartCoroutine("DoMelee");
+            }
+            
+        }
+        
+
+    }
+
 
     public void ChangeEnemyLife(int damage)
     {
         enemyHealth = enemyHealth - damage;
+        anim.SetTrigger("ReceiveDamage");
 
         if (enemyHealth == 0)
+        {
+            Gary.UpdateScore(10);
+            Score.ChangeScore();
             Destroy(gameObject);
+
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -45,89 +176,85 @@ public class PunchingEnemy : MonoBehaviour
         {
             ChangeEnemyLife(playerShot.damage);
             Destroy(playerShot.gameObject);
+
+        }
+
+    
+
+        PlayerPunch punch = collision.gameObject.GetComponent<PlayerPunch>();
+        if (punch != null)
+        {
+            ChangeEnemyLife(punch.damage);
+
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-            target = player.transform.position;
-            movement = target - transform.position;
-
-            if (movement.x > 0)
-            {
-                var rotation = transform.rotation;
-                rotation.y = 180;
-                transform.rotation = rotation;
-                //EnemyShootingPoint.transform.rotation = rotation;
-                enemyRen.flipX = movement.x < 0;
-
-            }
-            else
-            {
-                var rotation = transform.rotation;
-                rotation.y = 0;
-                transform.rotation = rotation;
-                //EnemyShootingPoint.transform.rotation = rotation;
-                enemyRen.flipX = movement.x > 0;
-            }
-
-        if (movement.magnitude < 0.7f)
-            movement = Vector2.zero;
-        movement.Normalize();
-        rigidbodyComponent.velocity = new Vector2(movement.x * speedX, movement.y * speedY);
-
-    }
-}
-        
-
-       
-
-
-
-
-
-        // Player player = collision.gameObject.GetComponent<Player>();
-
-    
-    /*
     private void OnTriggerStay2D(Collider2D collision)
     {
         Player player = collision.gameObject.GetComponent<Player>();
         if (player != null)
         {
+            Patrol = false;
             target = player.transform.position;
-            movement = target - transform.position;
-
-            if (movement.x > 0)
-            {
-                var rotation = transform.rotation;
-                rotation.y = 180;
-                transform.rotation = rotation;
-                //EnemyShootingPoint.transform.rotation = rotation;
-                enemyRen.flipX = movement.x < 0;
-
-            }
-            else
-            {
-                var rotation = transform.rotation;
-                rotation.y = 0;
-                transform.rotation = rotation;
-                //EnemyShootingPoint.transform.rotation = rotation;
-                enemyRen.flipX = movement.x > 0;
-            }
-
-            if (movement.magnitude < 0.3f)
-                movement = Vector2.zero;
-            movement.Normalize();
-            rigidbodyComponent.velocity = new Vector2(movement.x * speedX, movement.y * speedY);
-
         }
     }
-    */
+
+    //Deja de seguir al jugador en cuanto sale del FOV
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Player player = collision.gameObject.GetComponent<Player>();
+        if (player != null)
+        {
+            Patrol = true;
+            enemyPosx = transform.position.x;
+            target = transform.position;
+            rigidbodyComponent.velocity = new Vector2(0, 0);
+        }
+    }
+
+    void EnemyMeleeAttack()
+    {
+
+    }
+
+    IEnumerator DoMelee()
+    {
+        //Condicionales para validar la direccion del personaje y dar un puñetazo
+        if (enemyRen.flipX == true)
+        {
+            yield return new WaitForSeconds(0.2f);
+            rightPunch.SetActive(true);
+            yield return new WaitForSeconds(0.08f);
+            rightPunch.SetActive(false);
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.2f);
+            leftPunch.SetActive(true);
+            yield return new WaitForSeconds(0.08f);
+            leftPunch.SetActive(false);
+        }
+    }
+
+    public bool CanAttack
+    {
+        get
+        {
+            return shootCooldown <= 0;
+        }
+    }
+}
 
 
-  
+
+
+
+
+
+
+
+
+
+
 
 
