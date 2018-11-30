@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour {
-    public int damage = 10;
+    public int damage = 30;
     Rigidbody2D bulletRB;
 
     void Start()

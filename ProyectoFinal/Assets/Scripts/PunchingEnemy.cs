@@ -14,7 +14,7 @@ public class PunchingEnemy : MonoBehaviour
     public bool canAttack;
     public GameObject rightPunch;
     public GameObject leftPunch;
-    private float fireRate = 1.5f;
+    private float fireRate = 1f;
     private double shootCooldown;
 
     private bool dirRight = true;
@@ -62,98 +62,104 @@ public class PunchingEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("FireCop") &&
-            !anim.GetCurrentAnimatorStateInfo(0).IsName("DamageCop"))
+        if (Gary.isDead == false)
         {
-            anim.SetBool("WalkCop", true);
-
-            if (Patrol == true)
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("FireCop") &&
+            !anim.GetCurrentAnimatorStateInfo(0).IsName("DamageCop"))
             {
+                anim.SetBool("WalkCop", true);
 
-                if (dirRight)
+                if (Patrol == true)
                 {
-                    rigidbodyComponent.velocity = new Vector2(speedX, 0);
-                    transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, limiteY.x, limiteY.y), 0);
 
+                    if (dirRight)
+                    {
+                        rigidbodyComponent.velocity = new Vector2(speedX, 0);
+                        transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, limiteY.x, limiteY.y), 0);
+
+                    }
+                    else
+                    {
+                        rigidbodyComponent.velocity = new Vector2(-speedX, 0);
+                        transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, limiteY.x, limiteY.y), 0);
+                    }
+
+                    if (transform.position.x >= enemyPosx)
+                    {
+                        dirRight = false;
+                        var rotation = transform.rotation;
+                        rotation.y = 0;
+                        transform.rotation = rotation;
+
+                    }
+
+                    if (transform.position.x <= (enemyPosx - 4))
+                    {
+                        dirRight = true;
+                        var rotation = transform.rotation;
+                        rotation.y = 180;
+                        transform.rotation = rotation;
+
+                    }
                 }
                 else
                 {
-                    rigidbodyComponent.velocity = new Vector2(-speedX, 0);
+
+                    movement = target - transform.position;
+
+                    if (movement.x > 0)
+                    {
+                        var rotation = transform.rotation;
+                        rotation.y = 180;
+                        transform.rotation = rotation;
+                        enemyRen.flipX = movement.x < 0;
+
+                    }
+                    else
+                    {
+                        var rotation = transform.rotation;
+                        rotation.y = 0;
+                        transform.rotation = rotation;
+                        enemyRen.flipX = movement.x > 0;
+                    }
+
+                    if (movement.magnitude < 1.5f)
+                    {
+                        movement = Vector2.zero;
+
+                    }
+
+                    movement.Normalize();
+                    rigidbodyComponent.velocity = new Vector2(movement.x * speedX, movement.y * speedY);
                     transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, limiteY.x, limiteY.y), 0);
-                }
-
-                if (transform.position.x >= enemyPosx)
-                {
-                    dirRight = false;
-                    var rotation = transform.rotation;
-                    rotation.y = 0;
-                    transform.rotation = rotation;
-
-                }
-
-                if (transform.position.x <= (enemyPosx - 4))
-                {
-                    dirRight = true;
-                    var rotation = transform.rotation;
-                    rotation.y = 180;
-                    transform.rotation = rotation;
 
                 }
             }
             else
             {
+                rigidbodyComponent.velocity = Vector2.zero;
+            }
 
-                movement = target - transform.position;
+            if (shootCooldown > 0)
+            {
+                shootCooldown -= Time.deltaTime;
+            }
 
-                if (movement.x > 0)
+
+            if (Vector3.Distance(target, transform.position) < 2f)
+            {
+                if (CanAttack == true)
                 {
-                    var rotation = transform.rotation;
-                    rotation.y = 180;
-                    transform.rotation = rotation;
-                    enemyRen.flipX = movement.x < 0;
-
-                }
-                else
-                {
-                    var rotation = transform.rotation;
-                    rotation.y = 0;
-                    transform.rotation = rotation;
-                    enemyRen.flipX = movement.x > 0;
+                    shootCooldown = fireRate;
+                    EnemyMeleeAttack();
                 }
 
-                if (movement.magnitude < 1.5f)
-                {
-                    movement = Vector2.zero;
-                    
-                }
-
-                movement.Normalize();
-                rigidbodyComponent.velocity = new Vector2(movement.x * speedX, movement.y * speedY);
-                transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, limiteY.x, limiteY.y), 0);
-                
             }
         }
         else
         {
-            rigidbodyComponent.velocity = Vector2.zero;
+            rigidbodyComponent.velocity = Vector3.zero;
         }
-
-        if (shootCooldown > 0)
-        {
-            shootCooldown -= Time.deltaTime;
-        }
-
-        
-        if (Vector3.Distance(target, transform.position) < 2f)
-        {
-            if (CanAttack == true)
-            {
-                shootCooldown = fireRate;
-                EnemyMeleeAttack();
-            }
-            
-        }
-        
     }
 
 

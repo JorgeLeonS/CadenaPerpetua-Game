@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     SpriteRenderer spriteComponent;
 
     //Informacion Basica de sus armas
-    public float fireRate = 0.15f;
+    protected float fireRate = 0.40f;
     private double shootCooldown;
 
     //Variables externas - Armas
@@ -42,6 +42,8 @@ public class Player : MonoBehaviour
     public GameObject MacanaIndicator;
     public GameObject ShieldIndicator;
     public GameObject StairIndicator;
+
+    public GameObject GameOverCanvas;
 
     //
     Animator anim;
@@ -218,6 +220,7 @@ public class Player : MonoBehaviour
 
         if (CurrentWeapon == "Punch")
         {
+            fireRate = 0.32f;
             PistolIndicator.SetActive(false);
             KnifeIndicator.SetActive(false);
             MacanaIndicator.SetActive(false);
@@ -226,6 +229,7 @@ public class Player : MonoBehaviour
 
         if (CurrentWeapon == "Pistol")
         {
+            fireRate = 0.50f;
             PistolIndicator.SetActive(true);
             KnifeIndicator.SetActive(false);
             MacanaIndicator.SetActive(false);
@@ -234,6 +238,7 @@ public class Player : MonoBehaviour
 
         if (CurrentWeapon == "Macana")
         {
+            fireRate = 0.40f;
             PistolIndicator.SetActive(false);
             KnifeIndicator.SetActive(false);
             MacanaIndicator.SetActive(true);
@@ -241,6 +246,7 @@ public class Player : MonoBehaviour
 
         if (CurrentWeapon == "Knife")
         {
+            fireRate = 0.25f;
             PistolIndicator.SetActive(false);
             KnifeIndicator.SetActive(true);
             MacanaIndicator.SetActive(false);
@@ -302,7 +308,7 @@ public class Player : MonoBehaviour
         if (playerHealth <= 0 && playerShield == 0)
         {
             isDead = true;
-            SceneManager.LoadScene("Level1GameOver");
+            GameOverCanvas.SetActive(true);
         }
     }
 
@@ -432,15 +438,17 @@ public class Player : MonoBehaviour
         //Condicionales para validar la direccion del personaje y dar un puñetazo
         if (spriteComponent.flipX == false)
         {
-            rightPunch.SetActive(true);
             yield return new WaitForSeconds(0.1f);
+            rightPunch.SetActive(true);
+            yield return new WaitForSeconds(0.08f);
             rightPunch.SetActive(false);
 
         }
         else
         {
-            leftPunch.SetActive(true);
             yield return new WaitForSeconds(0.1f);
+            leftPunch.SetActive(true);
+            yield return new WaitForSeconds(0.08f);
             leftPunch.SetActive(false);
 
         }

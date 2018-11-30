@@ -61,85 +61,91 @@ public class EnemyFOV : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("FireCop") &&
-            !anim.GetCurrentAnimatorStateInfo(0).IsName("DamageCop"))
+        if (Gary.isDead == false)
         {
-            anim.SetBool("WalkCop", true);
-
-            if (Patrol == true)
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("FireCop") &&
+                !anim.GetCurrentAnimatorStateInfo(0).IsName("DamageCop"))
             {
+                anim.SetBool("WalkCop", true);
 
-                if (dirRight)
+                if (Patrol == true)
                 {
-                    rigidbodyComponent.velocity = new Vector2(speedX, 0);
-                    transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, limiteY.x, limiteY.y), 0);
 
+                    if (dirRight)
+                    {
+                        rigidbodyComponent.velocity = new Vector2(speedX, 0);
+                        transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, limiteY.x, limiteY.y), 0);
+
+                    }
+                    else
+                    {
+                        rigidbodyComponent.velocity = new Vector2(-speedX, 0);
+                        transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, limiteY.x, limiteY.y), 0);
+                    }
+
+                    if (transform.position.x >= enemyPosx)
+                    {
+                        dirRight = false;
+                        var rotation = transform.rotation;
+                        rotation.y = 0;
+                        transform.rotation = rotation;
+                        EnemyCenter.transform.rotation = rotation;
+
+                    }
+
+                    if (transform.position.x <= (enemyPosx - 4))
+                    {
+                        dirRight = true;
+                        var rotation = transform.rotation;
+                        rotation.y = 180;
+                        transform.rotation = rotation;
+                        EnemyCenter.transform.rotation = rotation;
+
+                    }
                 }
                 else
                 {
-                    rigidbodyComponent.velocity = new Vector2(-speedX, 0);
+                    movement = target - transform.position;
+
+                    if (movement.x > 0)
+                    {
+                        var rotation = transform.rotation;
+                        rotation.y = 180;
+                        transform.rotation = rotation;
+                        EnemyCenter.transform.rotation = rotation;
+                        enemyRen.flipX = movement.x < 0;
+
+                    }
+                    else
+                    {
+                        var rotation = transform.rotation;
+                        rotation.y = 0;
+                        transform.rotation = rotation;
+                        EnemyCenter.transform.rotation = rotation;
+                        enemyRen.flipX = movement.x > 0;
+                    }
+
+                    if (movement.magnitude < 1.3f)
+                    {
+                        movement = Vector2.zero;
+                    }
+
+                    movement.Normalize();
+                    rigidbodyComponent.velocity = new Vector2(movement.x * speedX, movement.y * speedY);
                     transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, limiteY.x, limiteY.y), 0);
-                }
-
-                if (transform.position.x >= enemyPosx)
-                {
-                    dirRight = false;
-                    var rotation = transform.rotation;
-                    rotation.y = 0;
-                    transform.rotation = rotation;
-                    EnemyCenter.transform.rotation = rotation;
-
-                }
-
-                if (transform.position.x <= (enemyPosx - 4))
-                {
-                    dirRight = true;
-                    var rotation = transform.rotation;
-                    rotation.y = 180;
-                    transform.rotation = rotation;
-                    EnemyCenter.transform.rotation = rotation;
 
                 }
             }
             else
             {
-                movement = target - transform.position;
-
-                if (movement.x > 0)
-                {
-                    var rotation = transform.rotation;
-                    rotation.y = 180;
-                    transform.rotation = rotation;
-                    EnemyCenter.transform.rotation = rotation;
-                    enemyRen.flipX = movement.x < 0;
-
-                }
-                else
-                {
-                    var rotation = transform.rotation;
-                    rotation.y = 0;
-                    transform.rotation = rotation;
-                    EnemyCenter.transform.rotation = rotation;
-                    enemyRen.flipX = movement.x > 0;
-                }
-
-                if (movement.magnitude < 1.3f)
-                {
-                    movement = Vector2.zero;
-                }
-
-                movement.Normalize();
-                rigidbodyComponent.velocity = new Vector2(movement.x * speedX, movement.y * speedY);
-                transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, limiteY.x, limiteY.y), 0);
-                
+                rigidbodyComponent.velocity = Vector3.zero;
             }
+
         }
         else
         {
             rigidbodyComponent.velocity = Vector3.zero;
         }
-        
-           
     }
     
 
@@ -178,6 +184,10 @@ public class EnemyFOV : MonoBehaviour {
         PlayerPunch punch = collision.gameObject.GetComponent<PlayerPunch>();
         if (punch != null)
         {
+            if (Gary.CurrentWeapon == "Macana")
+            {
+                punch.damage = punch.damage + 10;
+            }
             ChangeEnemyLife(punch.damage);
             
         }

@@ -289,15 +289,19 @@ MonoBehaviour:
   playerScore: 0
   speedX: 6
   speedY: 4
+  limiteX: {x: -184, y: 95}
   GoThroughFloors: 0
   OnUpperLevel: 0
   isDead: 0
-  fireRate: 0.25
   PlayerBullet: {fileID: 1754022416533750, guid: 757df7b2a4eb8264896ecb394e9fe6d4,
     type: 2}
   PlayerCenter: {fileID: 1070556650043014}
   rightPunch: {fileID: 1275902279600688}
   leftPunch: {fileID: 1025025648837414}
+  CurrentWeapon: 
+  GunUnlocked: 0
+  MacanaUnlocked: 0
+  KnifeUnlocked: 0
   PistolIndicator: {fileID: 0}
   KnifeIndicator: {fileID: 0}
   MacanaIndicator: {fileID: 0}

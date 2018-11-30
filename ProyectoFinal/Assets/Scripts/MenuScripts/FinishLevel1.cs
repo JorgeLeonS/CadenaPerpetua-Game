@@ -2,13 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class FinishLevel1 : MonoBehaviour {
+    public GameObject End;
+    public Text text;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    GameObject MainPlayer;
+    Player Gary;
+
+    // Use this for initialization
+    void Start () {
+        MainPlayer = GameObject.FindGameObjectWithTag("Player");
+        Gary = MainPlayer.GetComponent<Player>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -20,7 +27,8 @@ public class FinishLevel1 : MonoBehaviour {
         Player playerCol = collision.gameObject.GetComponent<Player>();
         if (playerCol != null)
         {
-            SceneManager.LoadScene("Level1Complete");
+            End.SetActive(true);
+            text.text = "Puntaje: " + Gary.playerScore;
         }
         
     }
