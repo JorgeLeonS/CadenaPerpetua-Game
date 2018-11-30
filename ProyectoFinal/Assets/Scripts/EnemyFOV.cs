@@ -125,7 +125,7 @@ public class EnemyFOV : MonoBehaviour {
                         enemyRen.flipX = movement.x > 0;
                     }
 
-                    if (movement.magnitude < 1.3f)
+                    if (movement.magnitude < 1.5f)
                     {
                         movement = Vector2.zero;
                     }
@@ -145,6 +145,13 @@ public class EnemyFOV : MonoBehaviour {
         else
         {
             rigidbodyComponent.velocity = Vector3.zero;
+        }
+
+        if (Vector3.Distance(transform.position, Gary.transform.position) < 1.5f)
+        {
+            float posX = transform.position.x;
+            posX = posX + 1f;
+            transform.position = new Vector3(posX, transform.position.y, 0);
         }
     }
     

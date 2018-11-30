@@ -126,7 +126,7 @@ public class PunchingEnemy : MonoBehaviour
                     if (movement.magnitude < 1.5f)
                     {
                         movement = Vector2.zero;
-
+                        
                     }
 
                     movement.Normalize();
@@ -138,6 +138,13 @@ public class PunchingEnemy : MonoBehaviour
             else
             {
                 rigidbodyComponent.velocity = Vector2.zero;
+            }
+
+            if(Vector3.Distance(transform.position, Gary.transform.position) < 1.2f)
+            {
+                float posX = transform.position.x;
+                posX = posX + 1f;
+                transform.position = new Vector3(posX, transform.position.y, 0);    
             }
 
             if (shootCooldown > 0)

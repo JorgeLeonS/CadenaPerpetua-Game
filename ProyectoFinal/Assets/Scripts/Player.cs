@@ -450,17 +450,17 @@ public class Player : MonoBehaviour
         //Condicionales para validar la direccion del personaje y dar un puñetazo
         if (spriteComponent.flipX == false)
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.09f);
             rightPunch.SetActive(true);
-            yield return new WaitForSeconds(0.08f);
+            yield return new WaitForSeconds(0.06f);
             rightPunch.SetActive(false);
 
         }
         else
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.09f);
             leftPunch.SetActive(true);
-            yield return new WaitForSeconds(0.08f);
+            yield return new WaitForSeconds(0.06f);
             leftPunch.SetActive(false);
 
         }

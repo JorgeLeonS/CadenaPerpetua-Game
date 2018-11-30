@@ -2933,12 +2933,12 @@ Prefab:
     - target: {fileID: 61059106858557704, guid: 24093342fd411ab43ad27c79675627f6,
         type: 2}
       propertyPath: m_Size.x
-      value: 2.1640682
+      value: 3.4163973
       objectReference: {fileID: 0}
     - target: {fileID: 61276351421106888, guid: 24093342fd411ab43ad27c79675627f6,
         type: 2}
       propertyPath: m_Size.x
-      value: 2.2203546
+      value: 3.2749636
       objectReference: {fileID: 0}
     - target: {fileID: 212382111615184086, guid: 24093342fd411ab43ad27c79675627f6,
         type: 2}
@@ -2958,12 +2958,12 @@ Prefab:
     - target: {fileID: 61276351421106888, guid: 24093342fd411ab43ad27c79675627f6,
         type: 2}
       propertyPath: m_Offset.x
-      value: 0.09844327
+      value: -0.42886126
       objectReference: {fileID: 0}
     - target: {fileID: 61059106858557704, guid: 24093342fd411ab43ad27c79675627f6,
         type: 2}
       propertyPath: m_Offset.x
-      value: -0.07030016
+      value: 0.55586445
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
