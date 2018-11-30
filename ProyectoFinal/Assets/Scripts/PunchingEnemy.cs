@@ -14,7 +14,7 @@ public class PunchingEnemy : MonoBehaviour
     private bool canAttack;
     public GameObject rightPunch;
     public GameObject leftPunch;
-    public float fireRate = 0.5f;
+    public float fireRate = 1.5f;
     private double shootCooldown;
 
     private bool dirRight = true;
@@ -140,14 +140,17 @@ public class PunchingEnemy : MonoBehaviour
             shootCooldown -= Time.deltaTime;
         }
 
-        if (Vector3.Distance(target, transform.position) < 1.5f)
+        if (Vector3.Distance(target, transform.position) < 2f)
         {
             if (CanAttack == true)
             {
                 shootCooldown = fireRate;
                 StartCoroutine("DoMelee");
+                anim.SetTrigger("CopShot");
+
             }
-            
+
+
         }
         
 

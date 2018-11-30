@@ -426,7 +426,7 @@ GameObject:
   - component: {fileID: 278169588}
   - component: {fileID: 278169587}
   m_Layer: 5
-  m_Name: SettingsButton
+  m_Name: VerHistoria
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -537,6 +537,7 @@ GameObject:
   - component: {fileID: 392740534}
   - component: {fileID: 392740533}
   - component: {fileID: 392740532}
+  - component: {fileID: 392740535}
   m_Layer: 5
   m_Name: InfoButton
   m_TagString: Untagged
@@ -601,7 +602,40 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 392740533}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 392740535}
+        m_MethodName: SeeInfo
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1226437782}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 392740530}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &392740533
@@ -638,6 +672,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 392740530}
   m_CullTransparentMesh: 0
+--- !u!114 &392740535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 392740530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7d6a851b5b6448099f566baf26fed35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &606209484
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,7 +829,7 @@ GameObject:
   - component: {fileID: 606927584}
   - component: {fileID: 606927583}
   m_Layer: 5
-  m_Name: Text
+  m_Name: VerHistoria
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -840,7 +885,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Settings
+  m_Text: 'Leer Historia
+
+'
 --- !u!222 &606927584
 CanvasRenderer:
   m_ObjectHideFlags: 0
