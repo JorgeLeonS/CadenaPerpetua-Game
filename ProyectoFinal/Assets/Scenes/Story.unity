@@ -429,7 +429,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 475988465}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e8787e7db4964ed792854c47c01205b, type: 3}
+  m_Script: {fileID: 11500000, guid: 73e3bef7e935748608b6a85fb450bc31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &475988468
@@ -472,7 +472,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 475988467}
-        m_MethodName: LoadStartMenu
+        m_MethodName: SelMenu
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

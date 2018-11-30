@@ -38,11 +38,13 @@ public class BossScript : MonoBehaviour
     Vector3 target;
 
     Animator anim;
-
+    AudioSource source;
+    public AudioClip Dogs;
 
     // Use this for initialization
     void Start()
     {
+        source = GetComponent<AudioSource>();
         enemyRen = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
 
@@ -94,9 +96,11 @@ public class BossScript : MonoBehaviour
     public void SpawnDogs()
     {
         anim.SetTrigger("BossAttack");
+        source.PlayOneShot(Dogs);
         Instantiate(BossDog, Spawn1.transform.position, Spawn1.transform.rotation);
         Instantiate(BossDog, Spawn2.transform.position, Spawn2.transform.rotation);
         Instantiate(BossDog, Spawn3.transform.position, Spawn3.transform.rotation);
+
     }
 
 

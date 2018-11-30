@@ -47,11 +47,19 @@ public class Player : MonoBehaviour
 
     //
     Animator anim;
+    AudioSource source;
+    public AudioClip PunchSound;
+    public AudioClip ShotSound;
+
     
-    
+
     // Use this for initialization
     void Start()
     {
+
+        source = GetComponent<AudioSource>();
+
+    GameObject.FindGameObjectWithTag("Music").GetComponent<KeepPlaying>().StopMusic();
         spriteComponent = GetComponent<SpriteRenderer>();
 
 
@@ -177,6 +185,7 @@ public class Player : MonoBehaviour
                 shootCooldown = fireRate;
                 anim.SetTrigger("SendPunch");
                 StartCoroutine("DoMelee");
+                source.PlayOneShot(PunchSound, 1F);
             }
 
             //Si su arma actual es la pistola, ataca
@@ -185,6 +194,7 @@ public class Player : MonoBehaviour
                 anim.SetTrigger("ShootMain");
                 shootCooldown = fireRate;
                 Instantiate(PlayerBullet, PlayerCenter.transform.position, PlayerCenter.transform.rotation);
+                source.PlayOneShot(ShotSound);
             }
 
             //Si su arma actual es la macana, ataca
@@ -193,6 +203,7 @@ public class Player : MonoBehaviour
                 shootCooldown = fireRate;
                 anim.SetTrigger("MacanaAttack");
                 StartCoroutine("DoMelee");
+                source.PlayOneShot(PunchSound, 1F);
             }
 
             //Si su arma actual es el cuchillo, ataca
@@ -201,6 +212,7 @@ public class Player : MonoBehaviour
                 shootCooldown = fireRate;
                 anim.SetTrigger("KnifeAttack");
                 StartCoroutine("DoMelee");
+                source.PlayOneShot(PunchSound, 1F);
             }
 
         }

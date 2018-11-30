@@ -750,7 +750,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Interacci\xF3n  CTRL Derecho"
+  m_Text: "Interacci\xF3n  Shift Derecho"
 --- !u!222 &69023147
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13918,6 +13918,48 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4930221868164542, guid: da0d6cbb314d45c40a49a462f83ebd91,
     type: 2}
   m_PrefabInternal: {fileID: 600930987}
+--- !u!1001 &982107806
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4586754036834918, guid: dd430d44da40c44d38d347315c98377a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 416.9088
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586754036834918, guid: dd430d44da40c44d38d347315c98377a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 184.06224
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586754036834918, guid: dd430d44da40c44d38d347315c98377a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 15.229291
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586754036834918, guid: dd430d44da40c44d38d347315c98377a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586754036834918, guid: dd430d44da40c44d38d347315c98377a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586754036834918, guid: dd430d44da40c44d38d347315c98377a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586754036834918, guid: dd430d44da40c44d38d347315c98377a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586754036834918, guid: dd430d44da40c44d38d347315c98377a, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dd430d44da40c44d38d347315c98377a, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &989377145
 GameObject:
   m_ObjectHideFlags: 0
@@ -20834,6 +20876,7 @@ MonoBehaviour:
   value7: {fileID: 21300108, guid: 5d73714a8768e4b3f86225b36daa7ba3, type: 3}
   value8: {fileID: 21300110, guid: 5d73714a8768e4b3f86225b36daa7ba3, type: 3}
   value9: {fileID: 21300112, guid: 5d73714a8768e4b3f86225b36daa7ba3, type: 3}
+  FourthDigit: 0
   imgs:
   - {fileID: 0}
   - {fileID: 0}
