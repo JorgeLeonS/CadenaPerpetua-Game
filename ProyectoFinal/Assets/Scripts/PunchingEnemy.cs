@@ -11,10 +11,10 @@ public class PunchingEnemy : MonoBehaviour
     private Vector2 movement;
     private Rigidbody2D rigidbodyComponent;
     private SpriteRenderer enemyRen;
-    private bool canAttack;
+    public bool canAttack;
     public GameObject rightPunch;
     public GameObject leftPunch;
-    public float fireRate = 1.5f;
+    private float fireRate = 1.5f;
     private double shootCooldown;
 
     private bool dirRight = true;
@@ -47,6 +47,7 @@ public class PunchingEnemy : MonoBehaviour
         enemyPosx = transform.position.x;
         dirRight = false;
         Patrol = true;
+        canAttack = false;
 
         MainPlayer = GameObject.FindGameObjectWithTag("Player");
         Gary = MainPlayer.GetComponent<Player>();
@@ -101,6 +102,7 @@ public class PunchingEnemy : MonoBehaviour
             }
             else
             {
+
                 movement = target - transform.position;
 
                 if (movement.x > 0)
@@ -122,17 +124,18 @@ public class PunchingEnemy : MonoBehaviour
                 if (movement.magnitude < 1.5f)
                 {
                     movement = Vector2.zero;
+                    
                 }
 
                 movement.Normalize();
                 rigidbodyComponent.velocity = new Vector2(movement.x * speedX, movement.y * speedY);
                 transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, limiteY.x, limiteY.y), 0);
-
+                
             }
         }
         else
         {
-            rigidbodyComponent.velocity = Vector3.zero;
+            rigidbodyComponent.velocity = Vector2.zero;
         }
 
         if (shootCooldown > 0)
@@ -140,20 +143,17 @@ public class PunchingEnemy : MonoBehaviour
             shootCooldown -= Time.deltaTime;
         }
 
+        
         if (Vector3.Distance(target, transform.position) < 2f)
         {
             if (CanAttack == true)
             {
                 shootCooldown = fireRate;
-                StartCoroutine("DoMelee");
-                anim.SetTrigger("CopShot");
-
+                EnemyMeleeAttack();
             }
-
-
+            
         }
         
-
     }
 
 
@@ -181,9 +181,7 @@ public class PunchingEnemy : MonoBehaviour
             Destroy(playerShot.gameObject);
 
         }
-
-    
-
+        
         PlayerPunch punch = collision.gameObject.GetComponent<PlayerPunch>();
         if (punch != null)
         {
@@ -214,28 +212,32 @@ public class PunchingEnemy : MonoBehaviour
             rigidbodyComponent.velocity = new Vector2(0, 0);
         }
     }
+    
 
-    void EnemyMeleeAttack()
+    public void EnemyMeleeAttack()
     {
-
+        anim.SetTrigger("CopShot");
+        rigidbodyComponent.velocity = Vector3.zero;
+        StartCoroutine("DoMelee");
     }
 
-    IEnumerator DoMelee()
+    protected IEnumerator DoMelee()
     {
+        
         //Condicionales para validar la direccion del personaje y dar un puñetazo
         if (enemyRen.flipX == true)
         {
-            yield return new WaitForSeconds(0.2f);
             rightPunch.SetActive(true);
-            yield return new WaitForSeconds(0.08f);
+            yield return new WaitForSeconds(0.05f);
             rightPunch.SetActive(false);
+            
         }
         else
         {
-            yield return new WaitForSeconds(0.2f);
             leftPunch.SetActive(true);
-            yield return new WaitForSeconds(0.08f);
+            yield return new WaitForSeconds(0.05f);
             leftPunch.SetActive(false);
+
         }
     }
 

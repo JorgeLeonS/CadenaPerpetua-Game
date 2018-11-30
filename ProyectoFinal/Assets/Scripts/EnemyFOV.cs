@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class EnemyFOV : MonoBehaviour {
 
-    public int enemyHealth = 10;
+    public int enemyHealth = 50;
     public float speedX = 2.3f;
     public float speedY = 1.7f;
-    public Vector2 limiteY = new Vector2(-3.5f, 2.197f);
+    public Vector2 limiteY = new Vector2(-2.9f, 2.197f);
     private Vector2 movement;
     private Rigidbody2D rigidbodyComponent;
     private SpriteRenderer enemyRen;

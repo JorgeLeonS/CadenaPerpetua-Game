@@ -13,8 +13,8 @@ public class Player : MonoBehaviour
     public int playerScore = 0;
     public int speedX = 6;
     public int speedY = 4;
-    Vector2 limiteX = new Vector2(-184f, 95f); //Limite en Y del jugador 
-    Vector2 limiteY = new Vector2(-3.5f, 2.81f); //Limite en Y del jugador estando en la planta baja
+    public Vector2 limiteX = new Vector2(-184f, 95f); //Limite en Y del jugador 
+    Vector2 limiteY = new Vector2(-2.9f, 2.81f); //Limite en Y del jugador estando en la planta baja
     Vector2 limiteEscalera = new Vector2(8.28f, 8.28f); //Limite en Y del jugador estando en la planta alta
     public bool GoThroughFloors; //Booleano para saber si esta adentro del collider de la escalera
     public bool OnUpperLevel; //Booleano para saber si esta en la planta alta
@@ -32,15 +32,16 @@ public class Player : MonoBehaviour
     public GameObject PlayerCenter;
     public GameObject rightPunch;
     public GameObject leftPunch;
-    string CurrentWeapon;
-    bool GunUnlocked;
-    bool MacanaUnlocked;
-    bool KnifeUnlocked;
+    public string CurrentWeapon;
+    public bool GunUnlocked;
+    public bool MacanaUnlocked;
+    public bool KnifeUnlocked;
 
     public GameObject PistolIndicator;
     public GameObject KnifeIndicator;
     public GameObject MacanaIndicator;
     public GameObject ShieldIndicator;
+    public GameObject StairIndicator;
 
     //
     Animator anim;
@@ -65,6 +66,8 @@ public class Player : MonoBehaviour
         KnifeIndicator.SetActive(false);
         PistolIndicator.SetActive(false);
         ShieldIndicator.SetActive(false);
+        StairIndicator.SetActive(false);
+
 
         GoThroughFloors = false;
         OnUpperLevel = false;
@@ -73,6 +76,15 @@ public class Player : MonoBehaviour
         MacanaUnlocked = false;
         KnifeUnlocked = false;
         GunUnlocked = false;
+
+        /*playerHealth = GlobalControl.Instance.playerHealth;
+        playerShield = GlobalControl.Instance.playerShield;
+        playerScore = GlobalControl.Instance.playerScore;
+        limiteX = GlobalControl.Instance.limiteX;
+        CurrentWeapon = GlobalControl.Instance.CurrentWeapon;
+        GunUnlocked = GlobalControl.Instance.GunUnlocked;
+        MacanaUnlocked = GlobalControl.Instance.MacanaUnlocked;
+        KnifeUnlocked = GlobalControl.Instance.KnifeUnlocked;*/
     }
 
     // Update is called once per frame
@@ -249,18 +261,21 @@ public class Player : MonoBehaviour
         {
             MoveThroughFloors();
         }
-
-
-
+        
     }
 
-    /*
-    void OnGUI()
+    public void SavePlayer()
     {
-        GUILayout.Label("Score: " + playerScore);
+        GlobalControl.Instance.playerHealth = playerHealth;
+        GlobalControl.Instance.playerShield = playerShield;
+        GlobalControl.Instance.playerScore = playerScore;
+        GlobalControl.Instance.limiteX = limiteX;
+        GlobalControl.Instance.CurrentWeapon = CurrentWeapon;
+        GlobalControl.Instance.GunUnlocked = GunUnlocked;
+        GlobalControl.Instance.MacanaUnlocked = MacanaUnlocked;
+        GlobalControl.Instance.KnifeUnlocked = KnifeUnlocked;
     }
-    */
-    
+
 
     //Metodo de perder vida y/o escudo
     public void ChangePlayerLife(int damage)
@@ -287,7 +302,7 @@ public class Player : MonoBehaviour
         if (playerHealth <= 0 && playerShield == 0)
         {
             isDead = true;
-            SceneManager.LoadScene("Level1");
+            SceneManager.LoadScene("Level1GameOver");
         }
     }
 
@@ -316,6 +331,14 @@ public class Player : MonoBehaviour
             ChangePlayerLife(punch.damage);
             anim.SetTrigger("ReceivePunch");
 
+        }
+
+        Dog dog = collision.gameObject.GetComponent<Dog>();
+        if (dog != null)
+        {
+            ChangePlayerLife(dog.damage);
+            Destroy(dog.gameObject);
+            anim.SetTrigger("ReceivePunch");
         }
 
         //Colision con una pistola
@@ -371,7 +394,16 @@ public class Player : MonoBehaviour
         Escalera escalera = collision.gameObject.GetComponent<Escalera>();
         if (escalera != null)
         {
+            StairIndicator.SetActive(true);
             GoThroughFloors = true;
+        }
+
+        EnemyPunch punch = collision.gameObject.GetComponent<EnemyPunch>();
+        if (punch != null)
+        {
+            ChangePlayerLife(punch.damage);
+            anim.SetTrigger("ReceivePunch");
+
         }
     }
 
@@ -381,8 +413,8 @@ public class Player : MonoBehaviour
         Escalera escalera = collision.gameObject.GetComponent<Escalera>();
         if (escalera != null)
         {
+            StairIndicator.SetActive(false);
             GoThroughFloors = false;
-
         }
     }
 
@@ -400,17 +432,17 @@ public class Player : MonoBehaviour
         //Condicionales para validar la direccion del personaje y dar un puñetazo
         if (spriteComponent.flipX == false)
         {
-            yield return new WaitForSeconds(0.2f);
             rightPunch.SetActive(true);
             yield return new WaitForSeconds(0.1f);
             rightPunch.SetActive(false);
+
         }
         else
         {
-            yield return new WaitForSeconds(0.2f);
             leftPunch.SetActive(true);
             yield return new WaitForSeconds(0.1f);
             leftPunch.SetActive(false);
+
         }
     }
   

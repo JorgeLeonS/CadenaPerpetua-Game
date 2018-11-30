@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossScript : MonoBehaviour
 {
 
-    public int enemyHealth = 10;
+    public int enemyHealth = 100;
     public float speedX = 2.3f;
     public float speedY = 1.7f;
     public Vector2 limiteY = new Vector2(-3.5f, 2.197f);
@@ -151,7 +151,7 @@ public class BossScript : MonoBehaviour
 
         if (enemyHealth == 0)
         {
-            Gary.UpdateScore(10);
+            Gary.UpdateScore(1000);
             Score.ChangeScore();
             Destroy(gameObject);
 
@@ -173,7 +173,7 @@ public class BossScript : MonoBehaviour
         if (player != null)
         {
             canShoot = true;
-            InvokeRepeating("EnemyShotAttack", 0, 1f);
+            InvokeRepeating("EnemyShotAttack", 0, 2f);
         }
 
         PlayerPunch punch = collision.gameObject.GetComponent<PlayerPunch>();

@@ -272,7 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a2727d34d4f0f646a9fe525fc86dd8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 20
 --- !u!114 &114490117441087908
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -292,7 +292,6 @@ MonoBehaviour:
   GoThroughFloors: 0
   OnUpperLevel: 0
   isDead: 0
-  hasWeapon: 0
   fireRate: 0.25
   PlayerBullet: {fileID: 1754022416533750, guid: 757df7b2a4eb8264896ecb394e9fe6d4,
     type: 2}
@@ -300,6 +299,10 @@ MonoBehaviour:
   rightPunch: {fileID: 1275902279600688}
   leftPunch: {fileID: 1025025648837414}
   PistolIndicator: {fileID: 0}
+  KnifeIndicator: {fileID: 0}
+  MacanaIndicator: {fileID: 0}
+  ShieldIndicator: {fileID: 0}
+  StairIndicator: {fileID: 0}
 --- !u!114 &114685856141097464
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -311,7 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a2727d34d4f0f646a9fe525fc86dd8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 20
 --- !u!114 &114960289211388070
 MonoBehaviour:
   m_ObjectHideFlags: 1
