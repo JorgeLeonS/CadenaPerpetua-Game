@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a1b243ea7a1042bbabf33128dae34a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 10
+  enemyHealth: 100
   speedX: 2.3
   speedY: 1.7
   limiteY: {x: -3.5, y: 2.197}
@@ -203,6 +203,10 @@ MonoBehaviour:
   EnemyBullet: {fileID: 1755606495117126, guid: 78c11fad93b7642dc91fe4a27902ebeb,
     type: 2}
   EnemyCenter: {fileID: 1932690905017236}
+  Spawn1: {fileID: 0}
+  Spawn2: {fileID: 0}
+  Spawn3: {fileID: 0}
+  BossDog: {fileID: 0}
 --- !u!114 &114720683135770324
 MonoBehaviour:
   m_ObjectHideFlags: 1

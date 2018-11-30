@@ -205,8 +205,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHealth: 10
-  speedX: 2.3
-  speedY: 1.7
+  speedX: 2.1
+  speedY: 1.5
   limiteY: {x: -3.5, y: 2.197}
   patrollingSpeed: 2
   enemyPosx: 0

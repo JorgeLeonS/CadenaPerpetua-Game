@@ -24,7 +24,7 @@ public class PlayerScore : MonoBehaviour {
 
     int Cont;
     int ThirdDigit;
-    int FourthDigit;
+    public int FourthDigit;
 
 
 

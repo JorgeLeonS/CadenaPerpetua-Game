@@ -168,7 +168,7 @@ public class PunchingEnemy : MonoBehaviour
         enemyHealth = enemyHealth - damage;
         anim.SetTrigger("ReceiveDamage");
 
-        if (enemyHealth == 0)
+        if (enemyHealth <= 0)
         {
             Gary.UpdateScore(10);
             Score.ChangeScore();
