@@ -1,4 +1,5 @@
 # Cadena Perpetua Game
+### The game is working with Unity Version 2019.3.13f1
 Game developed by 5th semester students at the Tecnológico de Monterrey, Mexico City Campus as a final project for the VideoGame development class.
 Consists of a BEAT 'EM UP, where the player needs to cross 3 levels while avoiding or defeating cops to escape from prison.
 - 4 Different types of enemies are implemented:
