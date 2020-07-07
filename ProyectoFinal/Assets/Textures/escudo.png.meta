@@ -1,10 +1,12 @@
 fileFormatVersion: 2
 guid: 7ec6ccf3bc35d964592ca6c21911cdb8
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: escudo_0
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: escudo_0
   externalObjects: {}
-  serializedVersion: 7
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -58,8 +60,9 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -70,7 +73,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -81,6 +85,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -100,6 +105,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: fb75e4c69b0e25e43b1ce85633e1ad43
+      internalID: 21300000
       vertices: []
       indices: 
       edges: []
@@ -108,10 +114,12 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: e022baea30d6a2b44bf97dd086d14742
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
+    secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
