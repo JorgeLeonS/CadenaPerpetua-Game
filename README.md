@@ -23,7 +23,6 @@ Consists of a BEAT 'EM UP, where the player needs to cross 3 levels while avoidi
 ![DemoImage4](https://github.com/JorgeLeonS/PrisionBreakGame/blob/master/ProyectoFinal/DemoImages/DemoImage4.png)
 
 #### Credits
-##### Unity implementation and programming:
-#### Professor: Salvador Alejandro Flores Muñoz
+##### Professor: Salvador Alejandro Flores Muñoz
 ##### Unity implementation and programming: Alfredo Prado Cajiga and Jorge León Salas
 ##### Sprites and animations: Anuar Villanueva and Enrique Landeros 
